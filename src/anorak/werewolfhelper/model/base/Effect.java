@@ -1,7 +1,7 @@
 package anorak.werewolfhelper.model.base;
 
-import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class Effect {
     protected String name;

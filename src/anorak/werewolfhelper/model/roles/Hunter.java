@@ -1,6 +1,5 @@
 package anorak.werewolfhelper.model.roles;
 
-import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.Role;

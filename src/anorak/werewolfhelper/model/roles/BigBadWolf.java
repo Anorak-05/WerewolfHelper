@@ -1,10 +1,10 @@
 package anorak.werewolfhelper.model.roles;
 
-import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.BigBadWolfAction;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
+import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class BigBadWolf extends Role {
 

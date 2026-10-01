@@ -4,9 +4,7 @@ import anorak.werewolfhelper.model.roles.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public enum ERole {
     ACTOR("Actor", Actor::new),

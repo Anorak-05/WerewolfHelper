@@ -1,9 +1,9 @@
 package anorak.werewolfhelper.model.roles;
 
-import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.WitchAction;
 import anorak.werewolfhelper.model.base.Role;
+import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class Witch extends Role {
 

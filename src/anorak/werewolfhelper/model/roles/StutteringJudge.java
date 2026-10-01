@@ -2,7 +2,6 @@ package anorak.werewolfhelper.model.roles;
 
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.StutteringJudgeAction;
-import anorak.werewolfhelper.model.actions.StutteringJudgeReminderAction;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.structure.GameStructure;
 

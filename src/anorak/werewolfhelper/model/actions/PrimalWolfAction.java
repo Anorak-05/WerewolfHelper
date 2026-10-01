@@ -4,12 +4,12 @@ import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
-import anorak.werewolfhelper.model.structure.GamePhase;
-import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
 import anorak.werewolfhelper.model.effects.EffectKilledByWerewolf;
+import anorak.werewolfhelper.model.structure.GamePhase;
+import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.Arrays;
 import java.util.List;

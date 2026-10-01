@@ -1,7 +1,6 @@
 package anorak.werewolfhelper.model.roles;
 
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.actions.FoolAction;
 import anorak.werewolfhelper.model.actions.FoxAction;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.structure.GameStructure;

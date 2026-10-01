@@ -2,9 +2,9 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
-import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.IGameEventAction;
+import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 

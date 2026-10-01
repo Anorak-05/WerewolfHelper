@@ -4,7 +4,6 @@ import anorak.werewolfhelper.controller.base.IUIController;
 import anorak.werewolfhelper.logging.ILogger;
 import anorak.werewolfhelper.logging.Logger;
 import anorak.werewolfhelper.model.Game;
-import anorak.werewolfhelper.test.TestController;
 import anorak.werewolfhelper.view.console.ConsoleController;
 
 public class GlobalState {
