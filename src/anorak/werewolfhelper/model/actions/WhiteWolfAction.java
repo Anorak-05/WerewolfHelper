@@ -1,0 +1,36 @@
+package anorak.werewolfhelper.model.actions;
+
+import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
+import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
+import anorak.werewolfhelper.model.structure.GamePhase;
+import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.base.IGameEventAction;
+import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
+
+import java.util.List;
+
+public class WhiteWolfAction implements IGameEventAction {
+    boolean mayKillTwice = true;
+
+    @Override
+    public void respondToGameEvent() {
+        if (!mayKillTwice) return;
+
+        if (new UIBooleanRequest("WhiteWolf", "Does the one of his own tonight?").request()) {
+            Player toKill = new UIPlayerRequest("WhiteWolf", "The White Wolf may choose a victim", List.of(EffectIsWerewolf.class)).request();
+            toKill.die();
+        }
+
+        mayKillTwice = !mayKillTwice;
+    }
+
+    @Override
+    public int getPriority() {
+        return 15;
+    }
+
+    @Override
+    public List<GamePhase> getPhases() {
+        return List.of(GamePhase.NIGHT);
+    }
+}

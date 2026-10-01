@@ -1,0 +1,18 @@
+Characters:
+
+Old One
+- lots of Edge Cases
+Actor
+- implement using EffectIsActor class
+
+---
+
+System:
+- Testing: Write played games into some file format that can be read back and replayed for testing games
+
+UI:
+- Android App and stuff
+
+GameLogic:
+- Filter class for choosing a subset of players
+- A way to setup and start game from UI
