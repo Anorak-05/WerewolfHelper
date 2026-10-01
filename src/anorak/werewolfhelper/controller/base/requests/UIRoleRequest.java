@@ -3,7 +3,6 @@ package anorak.werewolfhelper.controller.base.requests;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.IUIRequest;
 import anorak.werewolfhelper.controller.base.UIAction;
-import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.ERole;
 import anorak.werewolfhelper.model.base.Role;
 
@@ -24,6 +23,8 @@ public class UIRoleRequest extends UIAction implements IUIRequest<Role> {
 
     @Override
     public Role request() {
-        return GlobalState.getInstance().getUiController().requestRole(styling, message, fromRoles);
+        Role result = GlobalState.getInstance().getUiController().requestRole(styling, message, fromRoles);
+        GlobalState.getInstance().getLogger().addLog(message, result);
+        return result;
     }
 }

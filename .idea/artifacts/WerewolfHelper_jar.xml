@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WerewolfHelper:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WerewolfHelper_jar</output-path>
+    <root id="archive" name="WerewolfHelper.jar">
+      <element id="module-output" name="WerewolfHelper" />
+    </root>
+  </artifact>
+</component>

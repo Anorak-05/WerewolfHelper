@@ -1,10 +1,15 @@
 package anorak.werewolfhelper.model;
 
+import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
+import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
+import anorak.werewolfhelper.controller.base.requests.UIRoleRequest;
+import anorak.werewolfhelper.controller.base.requests.UIStringRequest;
 import anorak.werewolfhelper.model.actions.BasicWinCheckAction;
 import anorak.werewolfhelper.model.actions.LynchingAction;
 import anorak.werewolfhelper.model.actions.VoteAction;
 import anorak.werewolfhelper.model.actions.VoteCaptainAction;
 import anorak.werewolfhelper.model.base.Effect;
+import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.util.VoteResult;
@@ -35,11 +40,24 @@ public class Game {
         currentPhase = GamePhase.getFirst();
     }
 
+    public void startFromUI() {
+        while (new UIBooleanRequest("Game", "Add Player?").request()) {
+            String name = new UIStringRequest("Game", "Name: ").request();
+            Role role= new UIRoleRequest("Game", "Role: ").request();
+
+            addPlayer(new Player(role, name));
+        }
+
+        new UIDisplayRequest("Game", "Starting the Game ...");
+
+        start();
+    }
+
     public void addPlayer(Player player) {
         players.add(player);
     }
 
-    public void setup() {
+    private void setup() {
         for (Player player : players) {
             player.setup(structure);
         }
@@ -53,6 +71,7 @@ public class Game {
     }
 
     public void start() {
+        setup();
         gameLoop();
     }
 

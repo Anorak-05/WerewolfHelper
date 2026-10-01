@@ -18,7 +18,7 @@ public class VoteResult {
         }
     }
 
-    private final List<Vote> votes;
+    private List<Vote> votes;
     private boolean discarded = false;
 
     public VoteResult() {
@@ -33,6 +33,10 @@ public class VoteResult {
                 .toList();
     }
 
+    private void sortVotes() {
+        votes = votes.stream().sorted((a, b) -> b.votes - a.votes).toList();
+    }
+
     public void discardVote() {
         discarded = true;
     }
@@ -41,7 +45,7 @@ public class VoteResult {
         return discarded;
     }
 
-    public Player getMostVoted() {
+    public Player getLynchingCandidate() {
         if (isTie() || votes.isEmpty()) return null;
         return votes.getFirst().player;
     }
@@ -78,5 +82,7 @@ public class VoteResult {
 
         if (result == null) return;
         result.votes = newVotes;
+
+        sortVotes();
     }
 }

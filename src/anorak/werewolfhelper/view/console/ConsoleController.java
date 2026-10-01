@@ -17,12 +17,14 @@ public class ConsoleController implements IUIController {
         System.out.println("[" + styling + "]\t" + message);
     }
 
-    public static String requestString(String styling, String message) {
+    @Override
+    public String requestString(String styling, String message) {
         System.out.println("[" + styling + "]\t" + message);
         System.out.print("> ");
         return scanner.nextLine();
     }
 
+    @Override
     public boolean requestBoolean(String styling, String message) {
         while (true) {
             System.out.println("[" + styling + "]\t" + message + "\t[y|n]");
@@ -40,6 +42,7 @@ public class ConsoleController implements IUIController {
         }
     }
 
+    @Override
     public int requestInt(String styling, String message) {
         String input;
 
@@ -64,6 +67,7 @@ public class ConsoleController implements IUIController {
         return player;
     }
 
+    @Override
     public Player requestPlayer(String styling, String message, List<Player> fromPlayers) {
         if (fromPlayers == null || fromPlayers.isEmpty())
             return requestPlayer(styling, message);

@@ -2,11 +2,6 @@ package anorak.werewolfhelper;
 
 import anorak.werewolfhelper.logging.ILogger;
 import anorak.werewolfhelper.model.Game;
-import anorak.werewolfhelper.model.Player;
-import static anorak.werewolfhelper.model.base.ERole.*;
-import anorak.werewolfhelper.model.roles.*;
-
-import java.io.Console;
 
 public class Main {
 
@@ -14,14 +9,12 @@ public class Main {
         Game game = GlobalState.getInstance().getGame();
         ILogger logger = GlobalState.getInstance().getLogger();
 
-        game.addPlayer(new Player(VILLAGER.create(), "V1"));
-        game.addPlayer(new Player(VILLAGER.create(), "V2"));
-        game.addPlayer(new Player(VILLAGER.create(), "V3"));
-        game.addPlayer(new Player(VILLAGER.create(), "V4"));
-        game.addPlayer(new Player(VILLAGER.create(), "V5"));
-        game.addPlayer(new Player(WEREWOLF.create(), "W"));
-        game.addPlayer(new Player(DEVOTED_SERVANT.create(), "DS"));
-        game.addPlayer(new Player(HUNTER.create(), "H"));
+//        game.addPlayer(new Player(VILLAGER.create(), "V1"));
+//        game.addPlayer(new Player(VILLAGER.create(), "V2"));
+//        game.addPlayer(new Player(VILLAGER.create(), "V3"));
+//        game.addPlayer(new Player(VILLAGER.create(), "V4"));
+//        game.addPlayer(new Player(VILLAGER.create(), "V5"));
+//        game.addPlayer(new Player(WEREWOLF.create(), "W"));
 
 //        game.addPlayer(new Player(new Villager(), "Nils"));
 //        game.addPlayer(new Player(new Villager(), "Tom"));
@@ -32,9 +25,9 @@ public class Main {
 //        game.addPlayer(new Player(new Seer(), "Fay"));
 //        game.addPlayer(new Player(new Hunter(), "Lennard"));
 
-        game.setup();
-        game.start();
+        game.startFromUI();
+        //game.start();
 
-        System.out.println(logger.getLogs());
+        //System.out.println(logger.getLogs());
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 // this is the only way for the model to communicate with whatever controls it - User through CMD or App or Test runner
 public interface IUIController {
+    String requestString(String styling, String message);
     Player requestPlayer(String styling, String message, List<Player> fromPlayers);
     Role requestRole(String styling, String message, List<ERole> fromRoles);
     boolean requestBoolean(String styling, String message);

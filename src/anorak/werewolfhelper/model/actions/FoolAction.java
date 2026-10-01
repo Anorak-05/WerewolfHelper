@@ -2,12 +2,12 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
-import anorak.werewolfhelper.model.structure.GamePhase;
-import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.util.VoteResult;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.effects.EffectVoted;
+import anorak.werewolfhelper.model.structure.GamePhase;
+import anorak.werewolfhelper.model.structure.GameStructure;
+import anorak.werewolfhelper.model.util.VoteResult;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class FoolAction implements IGameEventAction {
         VoteResult voteResult = GlobalState.getInstance().getGame().getVoteResult();
         if (voteResult.isDiscarded()) return;
 
-        if (voteResult.getMostVoted() == player) {
+        if (voteResult.getLynchingCandidate() == player) {
             new UIDisplayRequest("Fool",
                     "The Fool shows his character token and is saved from Execution. There will be no executions today")
                     .request();

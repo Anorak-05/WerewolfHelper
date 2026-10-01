@@ -34,6 +34,11 @@ public class TestController implements IUIController {
     }
 
     @Override
+    public String requestString(String styling, String message) {
+        return consumeToken(message);
+    }
+
+    @Override
     public Player requestPlayer(String styling, String message, List<Player> fromPlayers) {
         return GlobalState.getInstance().getGame().getPlayerByName(consumeToken(message));
     }
