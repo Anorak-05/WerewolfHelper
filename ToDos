@@ -2,10 +2,14 @@ Characters:
 
 Old One
 - lots of Edge Cases
-Actor
-- implement using EffectIsActor class
 DevotedServant
 - implement some Edge Cases to do with Effects
+
+implement Angel, FlutePlayer, BitterOldMan
+
+Test all roles
+Add List<Player> players for all UIPLayerRequests
+Adjusts getPriority according to Rules!!!
 
 ---
 
@@ -14,6 +18,7 @@ System:
 
 UI:
 - Android App and stuff
+- Console: Auto-Completion
 
 GameLogic:
 - Filter class for choosing a subset of players

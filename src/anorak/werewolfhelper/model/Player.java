@@ -15,7 +15,7 @@ public class Player {
     private final String name;
     private boolean alive;
 
-    private GameStructure gameStructure;
+    private GameStructure structure;
 
     public Player(Role role, String name) {
         this.role = role;
@@ -27,7 +27,7 @@ public class Player {
 
     public void setup(GameStructure gameStructure) {
         role.setup(this, gameStructure);
-        this.gameStructure = gameStructure;
+        this.structure = gameStructure;
     }
 
     public void vote() {
@@ -35,6 +35,8 @@ public class Player {
     }
 
     public void addEffect(Effect effect) {
+        if (effects.stream().anyMatch(e -> e.getClass() == effect.getClass()))
+            return;
         effects.add(effect);
     }
 
@@ -64,9 +66,9 @@ public class Player {
     }
 
     public void changeRole(Role newRole) {
-        role.end();
+        structure.removeAllActions(role);
         role = newRole;
-        role.setup(this, gameStructure);
+        role.setup(this, structure);
     }
 
     @Override
@@ -81,11 +83,11 @@ public class Player {
         effects = new ArrayList<>();
 
         role.end();
-        gameStructure.removeAllActions(this);
+        structure.removeAllActions(this);
 
         new UIDisplayRequest(role.getName(), name + " died.").request();
 
-        gameStructure.getEvent(GamePhase.PLAYER_KILLED).trigger();
+        structure.getEvent(GamePhase.PLAYER_KILLED).trigger();
 
         alive = false;
     }

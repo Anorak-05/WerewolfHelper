@@ -23,7 +23,7 @@ public class FoolAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
         VoteResult voteResult = GlobalState.getInstance().getGame().getVoteResult();
-        if (voteResult.isDiscarded()) return;
+        if (voteResult.isDiscarded() || voteResult.noVote()) return;
 
         if (voteResult.getLynchingCandidate() == player) {
             new UIDisplayRequest("Fool",

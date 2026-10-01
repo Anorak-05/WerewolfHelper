@@ -12,13 +12,7 @@ import java.util.List;
 public class BigBadWolfAction implements IGameEventAction {
 
     private int numWolfes;
-    private boolean initialized = false;
     private boolean canKillAgain = true;
-
-    private void init() {
-        numWolfes= GlobalState.getInstance().getGame().getPlayersByEffect(EffectIsWerewolf.class).size();
-        initialized = true;
-    }
 
     private boolean canKillAgain() {
         return canKillAgain && (canKillAgain = numWolfes >= GlobalState.getInstance().getGame().getPlayersByEffect(EffectIsWerewolf.class).size());
@@ -26,7 +20,8 @@ public class BigBadWolfAction implements IGameEventAction {
 
     @Override
     public void respondToGameEvent() {
-        if (!initialized) init();
+        int currentNumWolfes = GlobalState.getInstance().getGame().getPlayersByEffect(EffectIsWerewolf.class).size();
+        numWolfes = Math.max(numWolfes, currentNumWolfes);
 
         if (canKillAgain()) {
             Player toKill = new UIPlayerRequest("BigBadWolf", "The Big Bad Wolf chooses another victim").request();

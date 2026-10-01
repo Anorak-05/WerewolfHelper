@@ -30,7 +30,9 @@ public enum ERole {
     VILLAGER("Villager", Villager::new),
     WEREWOLF("Werewolf", Werewolf::new),
     WHITE_WOLF("White Wolf", WhiteWolf::new),
-    WITCH("Witch", Witch::new);
+    WILD_CHILD("Wild Child", WildChild::new),
+    WITCH("Witch", Witch::new),
+    WOLF_HOUND("Wolfhound", WolfHound::new);
 
     private final String name;
     private final Function<String, Role> factory;

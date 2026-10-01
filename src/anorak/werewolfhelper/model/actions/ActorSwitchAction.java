@@ -13,20 +13,27 @@ import java.util.List;
 
 public class ActorSwitchAction implements IGameEventAction {
     Player player;
+    EffectIsActor effect;
     GameStructure structure;
 
-    public ActorSwitchAction(Player player, GameStructure structure) {
+    public ActorSwitchAction(Player player, EffectIsActor effect, GameStructure structure) {
         this.player = player;
         this.structure = structure;
+
+        this.effect = effect;
     }
 
     @Override
     public void respondToGameEvent() {
+        if (!effect.canSwitchRole()) return;
+
         if (new UIBooleanRequest("Actor", "Does the Actor want to imitate a role tonight?").request()) {
             Role role = new UIRoleRequest("Actor", "Who does the Actor want to imitate?").request();
 
             player.changeRole(role);
-            ((EffectIsActor)player.getEffect(EffectIsActor.class)).useRoleSwitch();
+            effect.useRoleSwitch();
+
+            structure.addAction(new ActorSwitchBackAction(player, structure));
         }
     }
 
@@ -37,6 +44,6 @@ public class ActorSwitchAction implements IGameEventAction {
 
     @Override
     public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_NIGHT);
+        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
     }
 }

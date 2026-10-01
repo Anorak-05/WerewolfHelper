@@ -18,11 +18,13 @@ public class VoteResult {
         }
     }
 
-    private List<Vote> votes;
+    private List<Vote> voteList;
     private boolean discarded = false;
 
     public VoteResult() {
-        votes = getVoteResults();
+        System.out.println(GlobalState.getInstance().getGame().getPlayersByEffect(EffectVoted.class));
+
+        voteList = getVoteResults();
     }
 
     private List<Vote> getVoteResults() {
@@ -34,7 +36,7 @@ public class VoteResult {
     }
 
     private void sortVotes() {
-        votes = votes.stream().sorted((a, b) -> b.votes - a.votes).toList();
+        voteList = voteList.stream().sorted((a, b) -> b.votes - a.votes).toList();
     }
 
     public void discardVote() {
@@ -46,39 +48,43 @@ public class VoteResult {
     }
 
     public Player getLynchingCandidate() {
-        if (isTie() || votes.isEmpty()) return null;
-        return votes.getFirst().player;
+        if (isTie() || voteList.isEmpty()) return null;
+        return voteList.getFirst().player;
+    }
+
+    public boolean noVote() {
+        return voteList.isEmpty();
     }
 
     public boolean isTie() {
-        return votes.isEmpty()
-                || votes.getFirst().votes == 0
-                || (votes.size() >= 2 && votes.get(0).votes == votes.get(1).votes);
+        return voteList.isEmpty()
+                || voteList.getFirst().votes == 0
+                || (voteList.size() >= 2 && voteList.get(0).votes == voteList.get(1).votes);
     }
 
     public List<Player> getAllVoted() {
-        return votes.stream().map(vote -> vote.player).toList();
+        return voteList.stream().map(vote -> vote.player).toList();
     }
 
     public List<Player> getAllMostVoted() {
-        if (votes.isEmpty()) return null;
-        int mostVotes = votes.getFirst().votes;
+        if (voteList.isEmpty()) return null;
+        int mostVotes = voteList.getFirst().votes;
 
-        return votes.stream()
+        return voteList.stream()
                 .filter(vote -> vote.votes == mostVotes)
                 .map(vote -> vote.player)
                 .toList();
     }
 
     public int getVotes(Player votedPlayer) {
-        Vote result = votes.stream().filter(vote -> vote.player == votedPlayer).findAny().orElse(null);
+        Vote result = voteList.stream().filter(vote -> vote.player == votedPlayer).findAny().orElse(null);
 
         if (result == null) return -1;
         return result.votes;
     }
 
     public void setVotes(Player votedPlayer, int newVotes) {
-        Vote result = votes.stream().filter(vote -> vote.player == votedPlayer).findAny().orElse(null);
+        Vote result = voteList.stream().filter(vote -> vote.player == votedPlayer).findAny().orElse(null);
 
         if (result == null) return;
         result.votes = newVotes;

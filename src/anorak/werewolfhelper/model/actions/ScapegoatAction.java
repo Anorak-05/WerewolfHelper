@@ -22,7 +22,7 @@ public class ScapegoatAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
         VoteResult voteResult = GlobalState.getInstance().getGame().getVoteResult();
-        if (voteResult.isDiscarded()) return;
+        if (voteResult.isDiscarded() || voteResult.noVote()) return;
 
         if(voteResult.isTie()) {
             new UIDisplayRequest("Scapegoat", "No one would be hanged today - The scapegoat takes the blame.").request();

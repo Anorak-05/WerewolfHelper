@@ -22,6 +22,10 @@ public class LynchingAction implements IGameEventAction {
     public void respondToGameEvent() {
         VoteResult voteResult = GlobalState.getInstance().getGame().getVoteResult();
         if (voteResult.isDiscarded()) return;
+        if (voteResult.noVote()) {
+            new UIDisplayRequest("Lynching", "No player was voted today");
+            return;
+        }
 
         if (voteResult.isTie()) {
            new UIDisplayRequest("Lynching", "No player was executed due to a draw in the voting").request();

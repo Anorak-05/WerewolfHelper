@@ -18,7 +18,9 @@ public class VoteAction implements IGameEventAction {
             Player toVote = new UIPlayerRequest("voting", "The village chooses player to hang").request();
             int votes = new UIIntRequest("voting", "How many votes does " + toVote + " get?").request();
 
-            toVote.addEffect(new EffectVoted(toVote, GlobalState.getInstance().getGame().getStructure(), votes));
+            if (votes > 0) {
+                toVote.addEffect(new EffectVoted(toVote, GlobalState.getInstance().getGame().getStructure(), votes));
+            }
         } while (new UIBooleanRequest("voting", "Vote for another Player?").request());
 
         GlobalState.getInstance().getGame().saveVoteResult();
