@@ -22,8 +22,6 @@ public class VoteResult {
     private boolean discarded = false;
 
     public VoteResult() {
-        System.out.println(GlobalState.getInstance().getGame().getPlayersByEffect(EffectVoted.class));
-
         voteList = getVoteResults();
     }
 

@@ -9,6 +9,7 @@ import java.util.function.Function;
 public enum ERole {
     ACTOR("Actor", Actor::new),
     AMOR("Amor", Amor::new),
+    ANGEL("Angle", Angel::new),
     BEAR_LEADER("Bear Leader",BearLeader::new),
     BIG_BAD_WOLF("Big Bad Wolf", BigBadWolf::new),
     CLEAN_SOUL("Clean Soul", CleanSoul::new),

@@ -77,12 +77,13 @@ public class Player {
     }
 
     public void die() {
+        role.end();
+
         for (Effect effect : effects) {
             effect.end();
         }
         effects = new ArrayList<>();
 
-        role.end();
         structure.removeAllActions(this);
 
         new UIDisplayRequest(role.getName(), name + " died.").request();
