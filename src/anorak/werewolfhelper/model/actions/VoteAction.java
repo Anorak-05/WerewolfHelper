@@ -15,7 +15,13 @@ public class VoteAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
         do {
-            Player toVote = new UIPlayerRequest("voting", "The village chooses player to hang").request();
+            Player toVote = new UIPlayerRequest("voting", "The village chooses player to hang")
+                    .fromPlayers(
+                            GlobalState.getInstance().getGame().getPlayers()
+                                    .excludeDead()
+                                    .get()
+                    )
+                    .request();
             int votes = new UIIntRequest("voting", "How many votes does " + toVote + " get?").request();
 
             if (votes > 0) {

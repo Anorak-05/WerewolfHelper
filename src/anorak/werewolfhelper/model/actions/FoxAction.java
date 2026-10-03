@@ -20,7 +20,11 @@ public class FoxAction implements IGameEventAction {
         if (usedAction) return;
 
         if (new UIBooleanRequest("Fox", "Does the Fox want to sniff out a Werewolf tonight?").request()) {
-            Player target = new UIPlayerRequest("Fox", "Choose a Player").request();
+            Player target = new UIPlayerRequest("Fox", "Choose a Player")
+                    .fromPlayers(
+                            GlobalState.getInstance().getGame().getPlayers().get()
+                    )
+                    .request();
 
             Game.Neighbors neighbors = GlobalState.getInstance().getGame().getAliveNeighbors(target);
 

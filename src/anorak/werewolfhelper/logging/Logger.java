@@ -25,4 +25,9 @@ public class Logger implements ILogger {
     public String getLogs() {
         return logs.stream().map(Log::toString).collect(Collectors.joining("\n"));
     }
+
+    @Override
+    public void saveLogs() {
+        //TODO
+    }
 }

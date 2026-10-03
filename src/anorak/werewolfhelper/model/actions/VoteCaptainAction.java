@@ -1,5 +1,6 @@
 package anorak.werewolfhelper.model.actions;
 
+import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.IGameEventAction;
@@ -18,7 +19,11 @@ public class VoteCaptainAction implements IGameEventAction {
 
     @Override
     public void respondToGameEvent() {
-        Player captain = new UIPlayerRequest("Captain", "Who is voted as Captain of the village?").request();
+        Player captain = new UIPlayerRequest("Captain", "Who is voted as Captain of the village?")
+                .fromPlayers(
+                        GlobalState.getInstance().getGame().getPlayers().excludeDead().get()
+                )
+                .request();
 
         captain.addEffect(new EffectIsCaptain(captain, structure));
 

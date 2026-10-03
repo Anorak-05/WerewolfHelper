@@ -1,20 +1,19 @@
 package anorak.werewolfhelper.model.structure;
 
-import anorak.werewolfhelper.model.base.delete_while_traverse_list.DeleteWhileTraverseList;
+import anorak.werewolfhelper.model.base.game_event_action_list.GameEventActionList;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class GameEvent {
 
-    private DeleteWhileTraverseList<IGameEventAction> gameEventActions;
+    private GameEventActionList gameEventActions;
     private boolean sorted;
 
     private boolean stopIterating = false;
 
     public GameEvent() {
-        gameEventActions = new DeleteWhileTraverseList<>(new ArrayList<>());
+        gameEventActions = new GameEventActionList(new ArrayList<>());
         sorted = true;
     }
 
@@ -27,12 +26,6 @@ public class GameEvent {
         gameEventActions.remove(action);
     }
 
-    private void ensureSorted() {
-        if (sorted) return;
-        gameEventActions.sort(Comparator.comparingInt(IGameEventAction::getPriority));
-        sorted = true;
-    }
-
     public void interruptTrigger() {
         stopIterating = true;
     }
@@ -40,8 +33,6 @@ public class GameEvent {
     public void trigger() {
         if (gameEventActions.isEmpty())
             return;
-
-        ensureSorted();
 
         Class<? extends IGameEventAction> lastActionClass = null;
 

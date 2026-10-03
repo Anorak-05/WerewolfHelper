@@ -13,7 +13,7 @@ public class WhiteWolfWinCheckAction implements IGameEventAction {
         int numAlivePlayers = GlobalState.getInstance().getGame().getPlayers().excludeDead().get().size();
 
         if (numAlivePlayers == 1) {
-            new UIDisplayRequest("endGameGood", "Game ended - GOOD won").request();
+            new UIDisplayRequest("WhiteWolf", "Game ended - White Wolf won").request();
             GlobalState.getInstance().getGame().endGame();
         }
     }

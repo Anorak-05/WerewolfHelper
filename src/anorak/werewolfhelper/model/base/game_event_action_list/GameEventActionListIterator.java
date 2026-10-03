@@ -1,13 +1,13 @@
-package anorak.werewolfhelper.model.base.delete_while_traverse_list;
+package anorak.werewolfhelper.model.base.game_event_action_list;
 
 import java.util.Iterator;
 import java.util.List;
 
-public class DeleteWhileTraverseListIterator<T> implements Iterator<T> {
+public class GameEventActionListIterator<T> implements Iterator<T> {
     private List<T> list;
     private int index = 0;
 
-    public DeleteWhileTraverseListIterator(List<T> list) {
+    public GameEventActionListIterator(List<T> list) {
         this.list = list;
     }
 

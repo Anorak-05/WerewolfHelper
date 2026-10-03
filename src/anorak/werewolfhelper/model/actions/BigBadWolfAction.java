@@ -31,7 +31,14 @@ public class BigBadWolfAction implements IGameEventAction {
         numWolfes = Math.max(numWolfes, currentNumWolfes);
 
         if (canKillAgain()) {
-            Player toKill = new UIPlayerRequest("BigBadWolf", "The Big Bad Wolf chooses another victim").request();
+            Player toKill = new UIPlayerRequest("BigBadWolf", "The Big Bad Wolf chooses another victim")
+                    .fromPlayers(
+                            GlobalState.getInstance().getGame().getPlayers()
+                                    .excludeDead()
+                                    .excludeHasEffect(EffectIsWerewolf.class)
+                                    .get()
+                    )
+                    .request();
             toKill.die();
         }
     }

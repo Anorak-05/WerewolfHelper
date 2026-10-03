@@ -5,6 +5,7 @@ import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIMultiplePlayersRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.IGameEventAction;
+import anorak.werewolfhelper.model.roles.Scapegoat;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.util.VoteResult;
@@ -26,10 +27,16 @@ public class ScapegoatAction implements IGameEventAction {
 
         if(voteResult.isTie()) {
             new UIDisplayRequest("Scapegoat", "No one would be hanged today - The scapegoat takes the blame.").request();
-            List<Player> allowedToVote = new UIMultiplePlayersRequest("Scapegoat", "Which players are allowed to vote tomorrow?").request();
+            List<Player> allowedToVote = new UIMultiplePlayersRequest("Scapegoat", "Which players are allowed to vote tomorrow?")
+                    .fromPlayers(
+                            GlobalState.getInstance().getGame().getPlayers()
+                                    .excludeDead()
+                                    .excludeHasRole(Scapegoat.class)
+                                    .get()
+                    )
+                    .request();
 
-            IGameEventAction voteAction = new ScapeGoatVotingAction(allowedToVote, structure);
-            structure.addAction(voteAction, voteAction);
+            structure.addAction(new ScapeGoatVotingAction(allowedToVote, structure));
 
             player.die();
 

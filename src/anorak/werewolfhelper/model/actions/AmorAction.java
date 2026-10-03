@@ -35,7 +35,7 @@ public class AmorAction implements IGameEventAction {
         loverA.addEffect(new EffectInLove(loverA, structure, loverB));
         loverB.addEffect(new EffectInLove(loverB, structure, loverA));
 
-        new UIDisplayRequest("Amor", "Touch the Players that are in love").request();
+        new UIDisplayRequest("Amor", "Touch the Players that are in love: " + loverA + ", " + loverB).request();
     }
 
     @Override

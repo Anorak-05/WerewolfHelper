@@ -50,11 +50,7 @@ public class TestController implements IUIController {
 
     @Override
     public boolean requestBoolean(String styling, String message) {
-        return switch (consumeToken(message).toCharArray()[0]) {
-            case 'Y', 'y' -> true;
-            case 'N', 'n' -> false;
-            default -> throw new IllegalStateException("Unexpected value: " + message.toCharArray()[0]);
-        };
+        return Boolean.parseBoolean(consumeToken(message));
     }
 
     @Override

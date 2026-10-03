@@ -17,7 +17,7 @@ public class WhiteWolfAction implements IGameEventAction {
     public void respondToGameEvent() {
         if (!mayKillTwice) return;
 
-        if (new UIBooleanRequest("WhiteWolf", "Does the one of his own tonight?").request()) {
+        if (new UIBooleanRequest("WhiteWolf", "Does the White Wolf kill one of his own tonight?").request()) {
             Player toKill = new UIPlayerRequest("WhiteWolf", "The White Wolf may choose a victim")
                     .fromPlayers(
                             GlobalState.getInstance().getGame().getPlayers()

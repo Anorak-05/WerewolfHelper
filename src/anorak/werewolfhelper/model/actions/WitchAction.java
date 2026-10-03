@@ -37,7 +37,6 @@ public class WitchAction implements IGameEventAction {
             if (new UIBooleanRequest("witch", "Möchte die Hexe die heute jemanden heilen?").request()) {
                 numHealing--;
 
-                // TODO: Spieler muss tot sein -> muss EffectKilledByWerewolf besitzen
                 Player toHeal = new UIPlayerRequest("witch","Wähle einen Toten")
                         .fromPlayers(dyingPlayers)
                         .request();
@@ -48,7 +47,11 @@ public class WitchAction implements IGameEventAction {
         if (numKilling > 0) {
             if (new UIBooleanRequest("witch", "Möchte die Hexe jemanden töten?").request()) {
                 numKilling--;
-                Player toKill = new UIPlayerRequest("witch","Wähle dein Opfer").request();
+                Player toKill = new UIPlayerRequest("witch","Wähle dein Opfer")
+                        .fromPlayers(
+                                GlobalState.getInstance().getGame().getPlayers().get()
+                        )
+                        .request();
 
                 toKill.die();
             }

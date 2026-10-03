@@ -5,4 +5,5 @@ public interface ILogger {
     void addLog(String message, Object result);
 
     String getLogs();
+    void saveLogs();
 }

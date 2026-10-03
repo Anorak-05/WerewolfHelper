@@ -1,6 +1,7 @@
 package anorak.werewolfhelper.model.roles;
 
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.WhiteWolfWinCheckAction;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
 import anorak.werewolfhelper.model.structure.GameStructure;
@@ -16,5 +17,6 @@ public class WhiteWolf extends Role {
         super.setup(player, structure);
 
         player.addEffect(new EffectIsWerewolf(player, structure));
+        structure.addAction(this, new WhiteWolfWinCheckAction());
     }
 }

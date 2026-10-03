@@ -18,7 +18,7 @@ public class SavedFromWerewolfKillAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
         if (player.removeEffect(EffectKilledByWerewolf.class)) {
-            new UIDisplayRequest("Healer", player.getName() + " was saved by the Healer").request();
+            new UIDisplayRequest("Savior", player.getName() + " was saved by the Savior").request();
         }
     }
 
