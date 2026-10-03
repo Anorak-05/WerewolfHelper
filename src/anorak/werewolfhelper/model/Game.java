@@ -4,10 +4,7 @@ import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIRoleRequest;
 import anorak.werewolfhelper.controller.base.requests.UIStringRequest;
-import anorak.werewolfhelper.model.actions.BasicWinCheckAction;
-import anorak.werewolfhelper.model.actions.LynchingAction;
-import anorak.werewolfhelper.model.actions.VoteAction;
-import anorak.werewolfhelper.model.actions.VoteCaptainAction;
+import anorak.werewolfhelper.model.actions.*;
 import anorak.werewolfhelper.model.base.Effect;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -64,6 +61,7 @@ public class Game {
 
         structure.addAction(this, new VoteAction());
         structure.addAction(this, new LynchingAction(structure));
+        structure.addAction(this, new ClearVotesAction());
         structure.addAction(this, new BasicWinCheckAction());
         structure.addAction(new VoteCaptainAction(structure));
 

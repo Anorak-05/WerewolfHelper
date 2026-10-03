@@ -16,23 +16,6 @@ public class EffectVoted extends Effect {
         name = "Effect Voted";
 
         this.votes = votes;
-
-        structure.addAction(this, new IGameEventAction() {
-            @Override
-            public void respondToGameEvent() {
-                end();
-            }
-
-            @Override
-            public int getPriority() {
-                return Integer.MAX_VALUE;
-            }
-
-            @Override
-            public List<GamePhase> getPhases() {
-                return List.of(GamePhase.POST_VOTE);
-            }
-        });
     }
 
     public int getVotes() {

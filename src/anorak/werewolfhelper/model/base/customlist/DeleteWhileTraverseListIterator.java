@@ -1,30 +1,37 @@
 package anorak.werewolfhelper.model.base.customlist;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Objects;
 
 public class DeleteWhileTraverseListIterator<T> implements Iterator<T> {
-    private DeleteWhileTraverseList<T> list;
+    private List<T> list;
     private int index = 0;
 
-    public DeleteWhileTraverseListIterator(DeleteWhileTraverseList<T> list) {
+    public DeleteWhileTraverseListIterator(List<T> list) {
         this.list = list;
     }
 
+    void reset() {
+        index = 0;
+    }
+
     void listAddedElement(int atIndex) {
-        if (atIndex <= index) index++;
+        if (atIndex < index) index++;
+    }
+
+    void listRemovedElement(int atIndex) {
+        if (atIndex <= index) index = Math.max(0, index - 1);
     }
 
     @Override
     public boolean hasNext() {
-        boolean finalIndex = index + 1 < list.size();
-        if (finalIndex) return false;
-
-        return list.subList(index, list.size()).stream().allMatch(Objects::isNull);
+        return index < list.size();
     }
 
     @Override
     public T next() {
-        return null;
+        return list.get(index++);
     }
 }

@@ -22,11 +22,11 @@ public class Angel extends Role {
     public void setup(Player player, GameStructure structure) {
         super.setup(player, structure);
 
-        structure.addAction(new IGameEventAction() {
+        structure.addAction(this, new IGameEventAction() {
             @Override
             public void respondToGameEvent() {
+                if (!firstMorning) return;
                 player.addEffect(new EffectAngelActive(player, structure));
-                structure.removeAllActions(this);
             }
 
             @Override
@@ -40,14 +40,13 @@ public class Angel extends Role {
             }
         });
 
-        structure.addAction(new IGameEventAction() {
+        structure.addAction(this, new IGameEventAction() {
             @Override
             public void respondToGameEvent() {
                 if (firstMorning) {
                     firstMorning = false;
                     return;
                 }
-                structure.removeAllActions(this);
                 player.removeEffect(EffectAngelActive.class);
             }
 

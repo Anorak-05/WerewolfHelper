@@ -5,18 +5,12 @@ import java.util.*;
 public class DeleteWhileTraverseList<T> implements List<T> {
     List<T> list;
     List<Integer> removedIndices;
+    DeleteWhileTraverseListIterator<T> iterator;
 
     public DeleteWhileTraverseList(List<T> list) {
         this.list = list;
         removedIndices = new ArrayList<>();
-    }
-
-    public void compress() {
-        removedIndices.sort((a, b) -> b - a);
-        for(int i : removedIndices) {
-            list.remove(i);
-        }
-        removedIndices.clear();
+        iterator = new DeleteWhileTraverseListIterator<>(list);
     }
 
     @Override
@@ -34,9 +28,11 @@ public class DeleteWhileTraverseList<T> implements List<T> {
         return list.contains(o);
     }
 
+    // This list only has one Iterator!!!
     @Override
     public Iterator<T> iterator() {
-        return list.iterator();
+        iterator.reset();
+        return iterator;
     }
 
     @Override
@@ -51,18 +47,19 @@ public class DeleteWhileTraverseList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        return list.add(t);
+        list.add(t);
+        iterator.listAddedElement(list.indexOf(t));
+        return true;
     }
 
     @Override
     public boolean remove(Object o) {
-        if (o == null) return false;
         int index = list.indexOf(o);
-        if (index < 0) return false;
-
-        list.set(index, null);
-        removedIndices.add(index);
-        return true;
+        if (index == -1) {
+            return false;
+        }
+        iterator.listRemovedElement(index);
+        return list.remove(o);
     }
 
     @Override

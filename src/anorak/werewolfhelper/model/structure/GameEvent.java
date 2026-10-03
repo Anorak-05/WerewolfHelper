@@ -5,6 +5,7 @@ import anorak.werewolfhelper.model.base.IGameEventAction;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class GameEvent {
 
@@ -38,16 +39,29 @@ public class GameEvent {
         ensureSorted();
 
         Class<? extends IGameEventAction> lastActionClass = null;
-        IGameEventAction action;
+//        IGameEventAction action;
+//
+//        for (int index = 0; index < gameEventActions.size(); index++) {
+//            action = gameEventActions.get(index);
+//
+//            if (lastActionClass == null || !lastActionClass.isInstance(action))
+//                action.respondToGameEvent();
+//            lastActionClass = action.getClass();
+//        }
 
-        for (int index = 0; index < gameEventActions.size(); index++) {
-            action = gameEventActions.get(index);
+        Iterator<IGameEventAction> iterator = gameEventActions.iterator();
 
+        while (iterator.hasNext()) {
+            IGameEventAction action = iterator.next();
             if (lastActionClass == null || !lastActionClass.isInstance(action))
                 action.respondToGameEvent();
             lastActionClass = action.getClass();
         }
-
-        gameEventActions.compress();
+//
+//        for(IGameEventAction action : gameEventActions) {
+//            if (lastActionClass == null || !lastActionClass.isInstance(action))
+//                action.respondToGameEvent();
+//            lastActionClass = action.getClass();
+//        }
     }
 }

@@ -9,7 +9,7 @@ import java.util.function.Function;
 public enum ERole {
     ACTOR("Actor", Actor::new),
     AMOR("Amor", Amor::new),
-    ANGEL("Angle", Angel::new),
+    ANGEL("Angel", Angel::new),
     BEAR_LEADER("Bear Leader",BearLeader::new),
     BIG_BAD_WOLF("Big Bad Wolf", BigBadWolf::new),
     CLEAN_SOUL("Clean Soul", CleanSoul::new),
@@ -20,6 +20,7 @@ public enum ERole {
     KNIGHT_WITH_THE_RUSTY_SWORD("Knight With The Rusty Sword", KnightWithTheRustySword::new),
     LITTLE_GIRL("Little Girl", LittleGirl::new),
     OLD_ONE("Old One", OldOne::new),
+    PIED_PIPER("Pied Piper", PiedPiper::new),
     PRIMAL_WOLF("Primal Wolf", PrimalWolf::new),
     SAVIOR("Savior", Savior::new),
     SCAPEGOAT("Scapegoat", Scapegoat::new),
