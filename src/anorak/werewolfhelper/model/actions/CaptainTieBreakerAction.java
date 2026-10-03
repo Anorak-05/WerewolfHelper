@@ -17,8 +17,10 @@ public class CaptainTieBreakerAction implements IGameEventAction {
 
         if (voteResult.noVote() || !voteResult.isTie()) return;
 
-        Player toLynch = UIPlayerRequest.fromPlayers ("Captain",
-                "TIEBREAKER: who did the Captain vote for?", voteResult.getAllMostVoted()).request();
+        Player toLynch = new UIPlayerRequest("Captain",
+                "TIEBREAKER: who did the Captain vote for?")
+                .fromPlayers(voteResult.getAllMostVoted())
+                .request();
 
         voteResult.setVotes(toLynch, voteResult.getVotes(toLynch) + 1);
     }

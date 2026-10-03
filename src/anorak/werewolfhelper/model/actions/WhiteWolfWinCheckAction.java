@@ -10,7 +10,7 @@ import java.util.List;
 public class WhiteWolfWinCheckAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
-        int numAlivePlayers = GlobalState.getInstance().getGame().getAlivePlayers().size();
+        int numAlivePlayers = GlobalState.getInstance().getGame().getPlayers().excludeDead().get().size();
 
         if (numAlivePlayers == 1) {
             new UIDisplayRequest("endGameGood", "Game ended - GOOD won").request();

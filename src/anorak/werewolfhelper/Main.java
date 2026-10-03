@@ -14,11 +14,11 @@ public class Main {
 
         game.addPlayer(new Player(VILLAGER.create(), "V1"));
         game.addPlayer(new Player(VILLAGER.create(), "V2"));
-        game.addPlayer(new Player(VILLAGER.create(), "V3"));
-        game.addPlayer(new Player(VILLAGER.create(), "V4"));
-        game.addPlayer(new Player(VILLAGER.create(), "V5"));
+//        game.addPlayer(new Player(VILLAGER.create(), "V3"));
+//        game.addPlayer(new Player(VILLAGER.create(), "V4"));
+//        game.addPlayer(new Player(VILLAGER.create(), "V5"));
         game.addPlayer(new Player(WEREWOLF.create(), "W"));
-        game.addPlayer(new Player(ANGEL.create(), "A"));
+        game.addPlayer(new Player(BITTER_OLD_MAN.create(), "B"));
 
 //        game.addPlayer(new Player(new Villager(), "Nils"));
 //        game.addPlayer(new Player(new Villager(), "Tom"));

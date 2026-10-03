@@ -1,4 +1,4 @@
-package anorak.werewolfhelper.model.base.customlist;
+package anorak.werewolfhelper.model.base.delete_while_traverse_list;
 
 import java.util.*;
 
@@ -58,8 +58,7 @@ public class DeleteWhileTraverseList<T> implements List<T> {
         if (index == -1) {
             return false;
         }
-        iterator.listRemovedElement(index);
-        return list.remove(o);
+        return remove(index) != null;
     }
 
     @Override
@@ -69,22 +68,22 @@ public class DeleteWhileTraverseList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return list.addAll(c);
+        throw new UnsupportedOperationException("Function not implemented");
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        return list.addAll(index, c);
+        throw new UnsupportedOperationException("Function not implemented");
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return list.removeAll(c);
+        throw new UnsupportedOperationException("Function not implemented");
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return list.retainAll(c);
+        throw new UnsupportedOperationException("Function not implemented");
     }
 
     @Override
@@ -109,6 +108,7 @@ public class DeleteWhileTraverseList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
+        iterator.listRemovedElement(index);
         return list.remove(index);
     }
 
@@ -124,16 +124,18 @@ public class DeleteWhileTraverseList<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator() {
+        //throw new UnsupportedOperationException("Function not implemented");
         return list.listIterator();
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
+        //throw new UnsupportedOperationException("Function not implemented");
         return list.listIterator(index);
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return list.subList(fromIndex, toIndex);
+        throw new UnsupportedOperationException("Function not implemented");
     }
 }

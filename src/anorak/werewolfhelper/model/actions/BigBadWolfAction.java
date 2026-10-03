@@ -5,6 +5,7 @@ import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
+import anorak.werewolfhelper.model.effects.EffectKilledByWerewolf;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
@@ -15,12 +16,18 @@ public class BigBadWolfAction implements IGameEventAction {
     private boolean canKillAgain = true;
 
     private boolean canKillAgain() {
-        return canKillAgain && (canKillAgain = numWolfes >= GlobalState.getInstance().getGame().getPlayersByEffect(EffectIsWerewolf.class).size());
+        return canKillAgain && (canKillAgain = numWolfes >= GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .includeHasEffect(EffectIsWerewolf.class)
+                .get().size());
     }
 
     @Override
     public void respondToGameEvent() {
-        int currentNumWolfes = GlobalState.getInstance().getGame().getPlayersByEffect(EffectIsWerewolf.class).size();
+        int currentNumWolfes = GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .includeHasEffect(EffectIsWerewolf.class)
+                .get().size();
         numWolfes = Math.max(numWolfes, currentNumWolfes);
 
         if (canKillAgain()) {

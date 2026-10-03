@@ -7,6 +7,7 @@ import anorak.werewolfhelper.controller.base.requests.UIStringRequest;
 import anorak.werewolfhelper.model.actions.*;
 import anorak.werewolfhelper.model.base.Effect;
 import anorak.werewolfhelper.model.base.Role;
+import anorak.werewolfhelper.model.base.PlayerList;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.util.VoteResult;
@@ -88,6 +89,7 @@ public class Game {
     }
 
     public void endGame() {
+        structure.getEvent(currentPhase).interruptTrigger();
         gameEnded = true;
     }
 
@@ -99,12 +101,8 @@ public class Game {
         return player.orElse(null);
     }
 
-    public List<Player> getPlayersByEffect(Class<? extends Effect> effect) {
-        return players.stream().filter(p -> p.hasEffect(effect)).toList();
-    }
-
-    public List<Player> getAlivePlayers() {
-        return players.stream().filter(Player::isAlive).toList();
+    public PlayerList getPlayers() {
+        return new PlayerList(players);
     }
 
     public VoteResult getVoteResult() {
@@ -117,7 +115,7 @@ public class Game {
 
     public record Neighbors(List<Player> left, List<Player> right) {}
     public Neighbors getAliveNeighbors(Player player) {
-        List<Player> alivePlayers = getAlivePlayers();
+        List<Player> alivePlayers = getPlayers().excludeDead().get();
 
         int idx = alivePlayers.indexOf(player);
         int leftIdx, rightIdx;

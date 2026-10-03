@@ -76,6 +76,8 @@ public class Player {
         return name;
     }
 
+    // The order here is really tricky to get right for all Effects and Actions to work properly
+    // Signs of a badly designed system? Perhaps.
     public void die() {
         role.end();
 
@@ -88,9 +90,9 @@ public class Player {
 
         new UIDisplayRequest(role.getName(), name + " died.").request();
 
-        structure.getEvent(GamePhase.PLAYER_KILLED).trigger();
-
         alive = false;
+
+        structure.getEvent(GamePhase.PLAYER_KILLED).trigger();
     }
 
     public boolean isAlive() {

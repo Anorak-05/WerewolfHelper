@@ -25,7 +25,10 @@ public class PrimalWolfAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
         if (transformations > 0) {
-            List<Player> deadPlayers = GlobalState.getInstance().getGame().getPlayersByEffect(EffectKilledByWerewolf.class);
+            List<Player> deadPlayers = GlobalState.getInstance().getGame().getPlayers()
+                    .excludeDead()
+                    .includeHasEffect(EffectKilledByWerewolf.class)
+                    .get();
 
             new UIDisplayRequest("PrimalWolf","These players were killed by Werewolves tonight: " + Arrays.deepToString(deadPlayers.toArray())).request();
 

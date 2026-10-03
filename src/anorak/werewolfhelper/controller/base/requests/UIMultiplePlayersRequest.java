@@ -11,30 +11,37 @@ import java.util.List;
 
 public class UIMultiplePlayersRequest extends UIAction implements IUIRequest<List<Player>> {
 
-    List<Player> fromPlayers;
+    private List<Player> fromPlayers;
+    private int max, min;
 
     public UIMultiplePlayersRequest(String styling, String message) {
         super(styling, message);
+        max = Integer.MAX_VALUE;
+        min = 0;
     }
 
-    public UIMultiplePlayersRequest(String styling, String message, List<Class<? extends Effect>> withEffects) {
-        super(styling, message);
+    public UIMultiplePlayersRequest setMin(int min) {
+        this.min = min;
+        return this;
+    }
 
-        //TODO make this better -> Filter Object that can be used by Game to find subset of Players
-        fromPlayers = GlobalState.getInstance().getGame().getAlivePlayers()
-                .stream()
-                .filter(
-                        player -> withEffects.stream().allMatch(player::hasEffect)
-                ).toList();
+    public UIMultiplePlayersRequest setMax(int max) {
+        this.max = max;
+        return this;
+    }
+
+    public UIMultiplePlayersRequest fromPlayers(List<Player> fromPlayers) {
+        this.fromPlayers = fromPlayers;
+        return this;
     }
 
     @Override
     public List<Player> request() {
 
         List<Player> result = new ArrayList<>();
-        result.add(GlobalState.getInstance().getUiController().requestPlayer(styling, message, fromPlayers));
+        GlobalState.getInstance().getUiController().display(styling, message);
 
-        while (GlobalState.getInstance().getUiController().requestBoolean(styling, "Add another?")) {
+        while (result.size() < max && (result.size() < min || GlobalState.getInstance().getUiController().requestBoolean(styling, "Add another?"))) {
             result.add(GlobalState.getInstance().getUiController().requestPlayer(styling, "Choose Player", fromPlayers));
         }
 

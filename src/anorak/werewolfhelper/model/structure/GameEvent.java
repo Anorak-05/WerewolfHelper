@@ -1,16 +1,17 @@
 package anorak.werewolfhelper.model.structure;
 
-import anorak.werewolfhelper.model.base.customlist.DeleteWhileTraverseList;
+import anorak.werewolfhelper.model.base.delete_while_traverse_list.DeleteWhileTraverseList;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 
 public class GameEvent {
 
     private DeleteWhileTraverseList<IGameEventAction> gameEventActions;
     private boolean sorted;
+
+    private boolean stopIterating = false;
 
     public GameEvent() {
         gameEventActions = new DeleteWhileTraverseList<>(new ArrayList<>());
@@ -32,6 +33,10 @@ public class GameEvent {
         sorted = true;
     }
 
+    public void interruptTrigger() {
+        stopIterating = true;
+    }
+
     public void trigger() {
         if (gameEventActions.isEmpty())
             return;
@@ -39,29 +44,14 @@ public class GameEvent {
         ensureSorted();
 
         Class<? extends IGameEventAction> lastActionClass = null;
-//        IGameEventAction action;
-//
-//        for (int index = 0; index < gameEventActions.size(); index++) {
-//            action = gameEventActions.get(index);
-//
-//            if (lastActionClass == null || !lastActionClass.isInstance(action))
-//                action.respondToGameEvent();
-//            lastActionClass = action.getClass();
-//        }
 
-        Iterator<IGameEventAction> iterator = gameEventActions.iterator();
-
-        while (iterator.hasNext()) {
-            IGameEventAction action = iterator.next();
+        for (IGameEventAction action : gameEventActions) {
+            if (stopIterating) break;
             if (lastActionClass == null || !lastActionClass.isInstance(action))
                 action.respondToGameEvent();
             lastActionClass = action.getClass();
         }
-//
-//        for(IGameEventAction action : gameEventActions) {
-//            if (lastActionClass == null || !lastActionClass.isInstance(action))
-//                action.respondToGameEvent();
-//            lastActionClass = action.getClass();
-//        }
+        stopIterating = false;
+
     }
 }

@@ -1,11 +1,9 @@
 Characters:
 
-Old One
+Old One: full implementation
 - lots of Edge Cases
 DevotedServant
 - implement some Edge Cases to do with Effects
-
-implement Angel, FlutePlayer, BitterOldMan
 
 Test all roles
 Add List<Player> players for all UIPLayerRequests
@@ -20,6 +18,3 @@ System:
 UI:
 - Android App and stuff
 - Console: Auto-Completion
-
-GameLogic:
-- Filter class for choosing a subset of players

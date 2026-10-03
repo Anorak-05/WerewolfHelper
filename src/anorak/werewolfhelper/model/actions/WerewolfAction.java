@@ -13,10 +13,14 @@ import java.util.List;
 public class WerewolfAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
-        List<Player> allowedToKill = GlobalState.getInstance().getGame().getAlivePlayers()
-                .stream().filter(player -> !player.hasEffect(EffectIsWerewolf.class)).toList();
+        List<Player> allowedToKill = GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .excludeHasEffect(EffectIsWerewolf.class)
+                .get();
 
-        Player toKill = UIPlayerRequest.fromPlayers("Werewolf", "Werewolves choose their Victim", allowedToKill).request();
+        Player toKill = new UIPlayerRequest("Werewolf", "Werewolves choose their Victim")
+                .fromPlayers(allowedToKill)
+                .request();
         toKill.addEffect(new EffectKilledByWerewolf(toKill, GlobalState.getInstance().getGame().getStructure()));
     }
 

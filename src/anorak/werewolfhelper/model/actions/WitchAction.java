@@ -26,16 +26,21 @@ public class WitchAction implements IGameEventAction {
     public void respondToGameEvent() {
         if (player.hasEffect(EffectKilledByWerewolf.class)) return;
 
-        List<Player> deadPlayers = GlobalState.getInstance().getGame().getPlayersByEffect(EffectKilledByWerewolf.class);
+        List<Player> dyingPlayers = GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .includeHasEffect(EffectKilledByWerewolf.class)
+                .get();
 
-        if (!deadPlayers.isEmpty() && numHealing > 0) {
-           new UIDisplayRequest("witch","Dies sind die Toten: " + Arrays.deepToString(deadPlayers.toArray())).request();
+        if (!dyingPlayers.isEmpty() && numHealing > 0) {
+           new UIDisplayRequest("witch","Dies sind die Toten: " + Arrays.deepToString(dyingPlayers.toArray())).request();
 
             if (new UIBooleanRequest("witch", "Möchte die Hexe die heute jemanden heilen?").request()) {
                 numHealing--;
 
                 // TODO: Spieler muss tot sein -> muss EffectKilledByWerewolf besitzen
-                Player toHeal = new UIPlayerRequest("witch","Wähle einen Toten", List.of(EffectKilledByWerewolf.class)).request();
+                Player toHeal = new UIPlayerRequest("witch","Wähle einen Toten")
+                        .fromPlayers(dyingPlayers)
+                        .request();
                 toHeal.getEffect(EffectKilledByWerewolf.class).end();
             }
         }

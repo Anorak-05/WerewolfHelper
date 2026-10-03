@@ -1,9 +1,7 @@
-package anorak.werewolfhelper.model.base.customlist;
+package anorak.werewolfhelper.model.base.delete_while_traverse_list;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Objects;
 
 public class DeleteWhileTraverseListIterator<T> implements Iterator<T> {
     private List<T> list;

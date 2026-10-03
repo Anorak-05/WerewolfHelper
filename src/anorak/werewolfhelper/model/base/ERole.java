@@ -12,6 +12,7 @@ public enum ERole {
     ANGEL("Angel", Angel::new),
     BEAR_LEADER("Bear Leader",BearLeader::new),
     BIG_BAD_WOLF("Big Bad Wolf", BigBadWolf::new),
+    BITTER_OLD_MAN("Bitter Old Man", BitterOldMan::new),
     CLEAN_SOUL("Clean Soul", CleanSoul::new),
     DEVOTED_SERVANT("Devoted Servant", DevotedServant::new),
     FOOL("Fool", Fool::new),

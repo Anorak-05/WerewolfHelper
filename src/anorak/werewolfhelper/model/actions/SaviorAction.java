@@ -20,11 +20,15 @@ public class SaviorAction implements IGameEventAction {
 
     @Override
     public void respondToGameEvent() {
-        List<Player> availableToHeal = GlobalState.getInstance().getGame().getAlivePlayers()
-                .stream().filter(player -> player != lastHealed).toList();
+        List<Player> availableToHeal = GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .excludePlayer(lastHealed)
+                .get();
 
-        Player toHeal = UIPlayerRequest.fromPlayers("Healer",
-                "The Healer chooses who to protect from Werewolves this night", availableToHeal).request();
+        Player toHeal = new UIPlayerRequest("Healer",
+                "The Healer chooses who to protect from Werewolves this night")
+                .fromPlayers(availableToHeal)
+                .request();
         toHeal.addEffect(new EffectSaved(toHeal, structure));
     }
 

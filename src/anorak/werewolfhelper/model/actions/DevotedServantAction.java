@@ -5,6 +5,7 @@ import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.ERole;
 import anorak.werewolfhelper.model.base.IGameEventAction;
+import anorak.werewolfhelper.model.effects.EffectKilledByWerewolf;
 import anorak.werewolfhelper.model.effects.EffectStagedForLynching;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
@@ -19,7 +20,10 @@ public class DevotedServantAction implements IGameEventAction {
 
     @Override
     public void respondToGameEvent() {
-        List<Player> playersToBeLynched = GlobalState.getInstance().getGame().getPlayersByEffect(EffectStagedForLynching.class);
+        List<Player> playersToBeLynched = GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .includeHasEffect(EffectStagedForLynching.class)
+                .get();
 
         if (playersToBeLynched.isEmpty()) return;
         Player toBeLynched = playersToBeLynched.getFirst();

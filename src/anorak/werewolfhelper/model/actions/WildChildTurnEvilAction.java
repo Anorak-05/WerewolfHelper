@@ -5,6 +5,7 @@ import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
+import anorak.werewolfhelper.model.effects.EffectKilledByWerewolf;
 import anorak.werewolfhelper.model.effects.EffectRoleModel;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
@@ -22,7 +23,10 @@ public class WildChildTurnEvilAction implements IGameEventAction {
 
     @Override
     public void respondToGameEvent() {
-        boolean roleModelDied = GlobalState.getInstance().getGame().getPlayersByEffect(EffectRoleModel.class).isEmpty();
+        boolean roleModelDied = GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .includeHasEffect(EffectRoleModel.class)
+                .get().isEmpty();
 
         if (roleModelDied) {
             new UIDisplayRequest("WildChild",

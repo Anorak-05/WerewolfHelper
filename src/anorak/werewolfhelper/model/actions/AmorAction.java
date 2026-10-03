@@ -1,5 +1,6 @@
 package anorak.werewolfhelper.model.actions;
 
+import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
@@ -19,8 +20,17 @@ public class AmorAction implements IGameEventAction {
 
     @Override
     public void respondToGameEvent() {
-        Player loverA = new UIPlayerRequest("Amor", "Amor chooses the first Player of the Couple").request();
-        Player loverB = new UIPlayerRequest("Amor", "Amor chooses the second Player of the Couple").request();
+        Player loverA = new UIPlayerRequest("Amor", "Amor chooses the first Player of the Couple")
+                .fromPlayers(GlobalState.getInstance().getGame().getPlayers()
+                        .excludeDead()
+                        .get())
+                .request();
+        Player loverB = new UIPlayerRequest("Amor", "Amor chooses the second Player of the Couple")
+                .fromPlayers(GlobalState.getInstance().getGame().getPlayers()
+                        .excludeDead()
+                        .excludePlayer(loverA)
+                        .get())
+                .request();
 
         loverA.addEffect(new EffectInLove(loverA, structure, loverB));
         loverB.addEffect(new EffectInLove(loverB, structure, loverA));

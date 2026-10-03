@@ -26,8 +26,10 @@ public class VoteResult {
     }
 
     private List<Vote> getVoteResults() {
-        return GlobalState.getInstance().getGame().getPlayersByEffect(EffectVoted.class)
-                .stream()
+        return GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .includeHasEffect(EffectVoted.class)
+                .get().stream()
                 .map(p -> new Vote(p, p.getEffect(EffectVoted.class).getVotes()))
                 .sorted((a, b) -> b.votes - a.votes)
                 .toList();

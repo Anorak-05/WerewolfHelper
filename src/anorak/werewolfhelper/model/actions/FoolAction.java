@@ -30,12 +30,6 @@ public class FoolAction implements IGameEventAction {
                     "The Fool shows his character token and is saved from Execution. There will be no executions today")
                     .request();
 
-            List<Player> votedPlayers = GlobalState.getInstance().getGame().getPlayersByEffect(EffectVoted.class);
-
-            for(Player voted : votedPlayers) {
-                voted.removeEffect(EffectVoted.class);
-            }
-
             structure.addAction(player, new ExposedFoolAction());
             voteResult.discardVote();
         }

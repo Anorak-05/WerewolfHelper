@@ -1,5 +1,6 @@
 package anorak.werewolfhelper.model.actions;
 
+import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
@@ -17,7 +18,13 @@ public class WhiteWolfAction implements IGameEventAction {
         if (!mayKillTwice) return;
 
         if (new UIBooleanRequest("WhiteWolf", "Does the one of his own tonight?").request()) {
-            Player toKill = new UIPlayerRequest("WhiteWolf", "The White Wolf may choose a victim", List.of(EffectIsWerewolf.class)).request();
+            Player toKill = new UIPlayerRequest("WhiteWolf", "The White Wolf may choose a victim")
+                    .fromPlayers(
+                            GlobalState.getInstance().getGame().getPlayers()
+                                    .excludeDead()
+                                    .includeHasEffect(EffectIsWerewolf.class)
+                                    .get())
+                    .request();
             toKill.die();
         }
 

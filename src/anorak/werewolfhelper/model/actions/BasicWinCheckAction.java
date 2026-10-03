@@ -11,8 +11,12 @@ import java.util.List;
 public class BasicWinCheckAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
-        int numAliveWerewolves = GlobalState.getInstance().getGame().getPlayersByEffect(EffectIsWerewolf.class).size();
-        int numAlivePlayers = GlobalState.getInstance().getGame().getAlivePlayers().size();
+        int numAliveWerewolves = GlobalState.getInstance().getGame().getPlayers()
+                .excludeDead()
+                .includeHasEffect(EffectIsWerewolf.class)
+                .get()
+                .size();
+        int numAlivePlayers = GlobalState.getInstance().getGame().getPlayers().excludeDead().get().size();
 
         // did good win?
         if (numAliveWerewolves == 0) {
