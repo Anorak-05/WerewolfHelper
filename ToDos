@@ -12,8 +12,7 @@ Adjusts getPriority according to Rules!!!
 ---
 
 System:
-- Testing: Write played games into some file format that can be read back and replayed for testing games
-- DeleteWhileTraverseList: handle adding elements while traversing, make easier to use
+- Programm arguments to rerun a game or start a new game from UI
 
 UI:
 - Android App and stuff

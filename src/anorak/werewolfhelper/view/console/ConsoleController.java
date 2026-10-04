@@ -6,14 +6,14 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.ERole;
 import anorak.werewolfhelper.model.base.Role;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleController implements IUIController {
     static Scanner scanner = new Scanner(System.in);
 
-    @Override
-    public void display(String styling, String message) {
+    public void write(String styling, String message) {
         System.out.println("[" + styling + "]\t" + message);
     }
 
@@ -56,6 +56,16 @@ public class ConsoleController implements IUIController {
         }
     }
 
+    @Override
+    public void display(String styling, String message) {
+        write(styling, message);
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Player requestPlayer(String styling, String message) {
         Player player;
 
@@ -74,7 +84,7 @@ public class ConsoleController implements IUIController {
 
         Player player;
 
-        display(styling, "Choose a Player: " + fromPlayers);
+        write(styling, "Choose a Player: " + fromPlayers);
 
         do {
             player = requestPlayer(styling, message);
@@ -92,7 +102,7 @@ public class ConsoleController implements IUIController {
         Role role = null;
 
         if (fromRoles != null)
-            display(styling, "Choose a Role: " + fromRoles);
+            write(styling, "Choose a Role: " + fromRoles);
 
         do {
             String roleName = requestString(styling, message).trim();

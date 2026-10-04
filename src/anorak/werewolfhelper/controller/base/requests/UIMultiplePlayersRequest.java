@@ -3,8 +3,8 @@ package anorak.werewolfhelper.controller.base.requests;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.IUIRequest;
 import anorak.werewolfhelper.controller.base.UIAction;
+import anorak.werewolfhelper.logging.Loggables;
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.base.Effect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +39,16 @@ public class UIMultiplePlayersRequest extends UIAction implements IUIRequest<Lis
     public List<Player> request() {
 
         List<Player> result = new ArrayList<>();
-        GlobalState.getInstance().getUiController().display(styling, message);
+        new UIDisplayRequest(styling, message).request();
 
-        while (result.size() < max && (result.size() < min || GlobalState.getInstance().getUiController().requestBoolean(styling, "Add another?"))) {
-            result.add(GlobalState.getInstance().getUiController().requestPlayer(styling, "Choose Player", fromPlayers));
+        while (result.size() < max && (result.size() < min || new UIBooleanRequest(styling, "Add another?").request())) {
+            result.add(new UIPlayerRequest(styling, "Choose Player").fromPlayers(fromPlayers).request());
         }
+//        while (result.size() < max && (result.size() < min || GlobalState.getInstance().getUiController().requestBoolean(styling, "Add another?"))) {
+//            result.add(GlobalState.getInstance().getUiController().requestPlayer(styling, "Choose Player", fromPlayers));
+//        }
 
-        GlobalState.getInstance().getLogger().addLog(message, result);
+        //GlobalState.getInstance().getLogger().addLog(message, Loggables.fromList(result, Loggables::fromPlayer));
         return result;
     }
 }

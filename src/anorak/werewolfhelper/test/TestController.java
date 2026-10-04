@@ -6,6 +6,7 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.ERole;
 import anorak.werewolfhelper.model.base.Role;
 
+import java.io.*;
 import java.util.List;
 
 // This testcontroller does absolutely not care about input correctness.
@@ -14,6 +15,21 @@ import java.util.List;
 public class TestController implements IUIController {
     String[] input;
     int index;
+
+    public static TestController fromFile(String path) {
+        File file = new File(path);
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+
+            reader.readLine();
+            String inputs = reader.readLine().trim();
+            String[] inputArray = inputs.replaceAll("[\\[\\]]", "").split(",\\s*");
+
+            return new TestController(inputArray);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public TestController(String[] input) {
         this.input = input;

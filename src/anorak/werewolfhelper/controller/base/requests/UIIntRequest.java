@@ -3,6 +3,7 @@ package anorak.werewolfhelper.controller.base.requests;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.IUIRequest;
 import anorak.werewolfhelper.controller.base.UIAction;
+import anorak.werewolfhelper.logging.Loggables;
 
 public class UIIntRequest extends UIAction implements IUIRequest<Integer> {
 
@@ -12,8 +13,8 @@ public class UIIntRequest extends UIAction implements IUIRequest<Integer> {
 
     @Override
     public Integer request() {
-        Integer result = GlobalState.getInstance().getUiController().requestInt(styling, message);
-        GlobalState.getInstance().getLogger().addLog(message, result);
+        int result = GlobalState.getInstance().getUiController().requestInt(styling, message);
+        GlobalState.getInstance().getLogger().addLog(message, Loggables.fromInt(result));
         return result;
     }
 }

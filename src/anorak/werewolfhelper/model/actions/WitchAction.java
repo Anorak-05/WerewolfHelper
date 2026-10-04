@@ -24,8 +24,6 @@ public class WitchAction implements IGameEventAction {
 
     @Override
     public void respondToGameEvent() {
-        if (player.hasEffect(EffectKilledByWerewolf.class)) return;
-
         List<Player> dyingPlayers = GlobalState.getInstance().getGame().getPlayers()
                 .excludeDead()
                 .includeHasEffect(EffectKilledByWerewolf.class)

@@ -9,19 +9,15 @@ import anorak.werewolfhelper.view.console.ConsoleController;
 public class GlobalState {
     private static GlobalState instance;
 
-    private Game game;
+    private final Game game;
     private final IUIController uiController;
     private final ILogger logger;
 
-    private GlobalState() {
-        game = new Game();
-        uiController = new ConsoleController();
-//        uiController = new TestController(
-//                new String[]{
-//                        "Tom", "Tom", "n", "n", "Heinz", "5", "n", "Tim", "Nils", "n", "y", "Hans"
-//                }
-//        );
-        logger = new Logger();
+    private GlobalState(IUIController uiController, ILogger logger) {
+        this.uiController = uiController;
+        this.logger = logger;
+
+        this.game = new Game();
     }
 
     public Game getGame() {
@@ -36,9 +32,17 @@ public class GlobalState {
         return uiController;
     }
 
+    public static boolean createInstance(IUIController controller, ILogger logger) {
+        if (instance == null) {
+            instance = new GlobalState(controller, logger);
+            return true;
+        }
+        return false;
+    }
+
     public static GlobalState getInstance() {
         if (instance == null) {
-            instance = new GlobalState();
+            throw new UnsupportedOperationException("GlobalInstanced was not initialized yet");
         }
         return instance;
     }

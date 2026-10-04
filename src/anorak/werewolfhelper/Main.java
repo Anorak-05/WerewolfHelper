@@ -1,37 +1,28 @@
 package anorak.werewolfhelper;
 
+import anorak.werewolfhelper.controller.base.IUIController;
 import anorak.werewolfhelper.logging.ILogger;
+import anorak.werewolfhelper.logging.Logger;
 import anorak.werewolfhelper.model.Game;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.test.TestController;
+import anorak.werewolfhelper.view.console.ConsoleController;
 
 import static anorak.werewolfhelper.model.base.ERole.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        Game game = GlobalState.getInstance().getGame();
-        ILogger logger = GlobalState.getInstance().getLogger();
+        IUIController controller;
+        ILogger logger = new Logger();
 
-        game.addPlayer(new Player(VILLAGER.create(), "V1"));
-        game.addPlayer(new Player(VILLAGER.create(), "V2"));
-//        game.addPlayer(new Player(VILLAGER.create(), "V3"));
-//        game.addPlayer(new Player(VILLAGER.create(), "V4"));
-//        game.addPlayer(new Player(VILLAGER.create(), "V5"));
-        game.addPlayer(new Player(WEREWOLF.create(), "W"));
-        game.addPlayer(new Player(BITTER_OLD_MAN.create(), "B"));
+        //controller = TestController.fromFile("C:\\Users\\minec\\Documents\\WerewolfHelper\\RecordedGames\\2026-10-04_17-34-47_Game.txt");
+        controller = new ConsoleController();
 
-//        game.addPlayer(new Player(new Villager(), "Nils"));
-//        game.addPlayer(new Player(new Villager(), "Tom"));
-//        game.addPlayer(new Player(new Villager(), "Tim"));
-//        game.addPlayer(new Player(new Witch(), "Struppi"));
-//        game.addPlayer(new Player(new Werewolf(), "Hans"));
-//        game.addPlayer(new Player(new Werewolf(), "Heinz"));
-//        game.addPlayer(new Player(new Seer(), "Fay"));
-//        game.addPlayer(new Player(new Hunter(), "Lennard"));
+        GlobalState.createInstance(controller, logger);
 
-        //game.startFromUI();
-        game.start();
+        GlobalState.getInstance().getGame().startFromUI();
 
-        //System.out.println(logger.getLogs());
+        logger.saveLogs();
     }
 }
