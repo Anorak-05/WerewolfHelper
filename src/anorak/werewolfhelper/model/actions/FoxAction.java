@@ -6,8 +6,8 @@ import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Game;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class FoxAction implements IGameEventAction {
 
             List<Player> sniffingTargets = List.of(neighbors.left().getFirst(), target, neighbors.right().getFirst());
 
-            boolean werewolfAmongGroup = sniffingTargets.stream().anyMatch(player -> player.hasEffect(EffectIsWerewolf.class));
+            boolean werewolfAmongGroup = sniffingTargets.stream().anyMatch(player -> player.hasEffect(EEffect.IS_WEREWOLF));
 
             if(werewolfAmongGroup) {
                 new UIDisplayRequest("Fox", "There is a werewolf among the Group").request();

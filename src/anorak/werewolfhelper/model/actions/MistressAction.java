@@ -1,7 +1,6 @@
 package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.GlobalState;
-import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.effects.EEffect;
@@ -11,40 +10,42 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.List;
 
-public class AmorAction implements IGameEventAction {
+public class MistressAction implements IGameEventAction {
+    Player player;
     GameStructure structure;
 
-    public AmorAction(GameStructure structure) {
+    Player previouslySleptWith;
+
+    public MistressAction(Player player, GameStructure structure) {
+        this.player = player;
         this.structure = structure;
     }
 
     @Override
     public void respondToGameEvent() {
-        Player loverA = new UIPlayerRequest("Amor", "Amor chooses the first Player of the Couple")
+        Player sleepWith = new UIPlayerRequest("Mistress", "Where does the Mistress sleep tonight?")
                 .fromPlayers(GlobalState.getInstance().getGame().getPlayers()
                         .excludeDead()
-                        .get())
-                .request();
-        Player loverB = new UIPlayerRequest("Amor", "Amor chooses the second Player of the Couple")
-                .fromPlayers(GlobalState.getInstance().getGame().getPlayers()
-                        .excludeDead()
-                        .excludePlayer(loverA)
+                        .excludePlayer(previouslySleptWith)
                         .get())
                 .request();
 
-        loverA.addEffect(EEffect.IN_LOVE);
-        loverB.addEffect(EEffect.IN_LOVE);
+        if (sleepWith.hasEffect(EEffect.IS_WEREWOLF)) {
+            player.addEffect(EEffect.KILLED_BY_WEREWOLF);
+        }
 
-        new UIDisplayRequest("Amor", "Touch the Players that are in love: " + loverA + ", " + loverB).request();
+        if (sleepWith != player) {
+            player.addEffect(EEffect.NOT_HOME);
+        }
     }
 
     @Override
     public int getPriority() {
-        return 20;
+        return 120;
     }
 
     @Override
     public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_FIRST_NIGHT);
+        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
     }
 }

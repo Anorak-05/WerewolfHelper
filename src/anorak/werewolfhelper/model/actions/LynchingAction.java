@@ -3,8 +3,8 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectStagedForLynching;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.util.VoteResult;
@@ -32,7 +32,7 @@ public class LynchingAction implements IGameEventAction {
            return;
         }
         Player mostVoted = voteResult.getLynchingCandidate();
-        mostVoted.addEffect(new EffectStagedForLynching(mostVoted, structure));
+        mostVoted.addEffect(EEffect.STAGED_FOR_LYNCHING);
         voteResult.discardVote();
     }
 

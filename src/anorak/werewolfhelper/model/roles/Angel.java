@@ -3,9 +3,9 @@ package anorak.werewolfhelper.model.roles;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.base.Role;
-import anorak.werewolfhelper.model.effects.EffectAngelActive;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
@@ -26,7 +26,7 @@ public class Angel extends Role {
             @Override
             public void respondToGameEvent() {
                 if (!firstMorning) return;
-                player.addEffect(new EffectAngelActive(player, structure));
+                player.addEffect(EEffect.ANGEL_ACTIVE);
             }
 
             @Override
@@ -47,7 +47,7 @@ public class Angel extends Role {
                     firstMorning = false;
                     return;
                 }
-                player.removeEffect(EffectAngelActive.class);
+                player.removeEffect(EEffect.ANGEL_ACTIVE);
             }
 
             @Override
@@ -66,7 +66,7 @@ public class Angel extends Role {
     public void end() {
         super.end();
 
-        if (player.hasEffect(EffectAngelActive.class)) {
+        if (player.hasEffect(EEffect.ANGEL_ACTIVE)) {
             new UIDisplayRequest("Angel", "Game ended - Angel won").request();
             GlobalState.getInstance().getGame().endGame();
         }

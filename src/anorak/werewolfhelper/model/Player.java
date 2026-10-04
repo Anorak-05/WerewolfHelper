@@ -1,17 +1,19 @@
 package anorak.werewolfhelper.model;
 
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
-import anorak.werewolfhelper.model.base.Effect;
+import anorak.werewolfhelper.model.effects.EEffect;
+import anorak.werewolfhelper.model.effects.Effect;
+import anorak.werewolfhelper.model.effects.IEffect;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player {
     private Role role;
-    private List<Effect> effects;
+    private Map<EEffect, IEffect> effects;
     private final String name;
     private boolean alive;
 
@@ -22,7 +24,7 @@ public class Player {
         this.name = name;
         alive = true;
 
-        effects = new ArrayList<>();
+        effects = new HashMap<>();
     }
 
     public void setup(GameStructure gameStructure) {
@@ -34,25 +36,34 @@ public class Player {
 
     }
 
-    public void addEffect(Effect effect) {
-        if (effects.stream().anyMatch(e -> e.getClass() == effect.getClass()))
-            return;
-        effects.add(effect);
+    public IEffect addEffect(EEffect effectEnum) {
+        if (effects.containsKey(effectEnum))
+            return null;
+
+        IEffect effect = effectEnum.construct(this, structure);
+
+        if (!effects.entrySet().stream().allMatch(e -> e.getValue().allowAddOtherEffect(effect)))
+            return null;
+
+        return effects.put(effect.getEffectEnum(), effect);
     }
 
-    public <T extends Effect> T getEffect(Class<T> effectClass) {
-        return (T) effects.stream().filter(effectClass::isInstance).findFirst().orElse(null);
+    public IEffect getEffect(EEffect effectEnum) {
+        return effects.get(effectEnum);
     }
 
-    public boolean hasEffect(Class<? extends Effect> effectClass) {
-        return effects.stream().anyMatch(effectClass::isInstance);
+    public <T extends Effect> T getEffect(EEffect effectEnum, Class<T> type) {
+        return type.cast(effects.get(effectEnum));
     }
 
-    public boolean removeEffect(Class<? extends Effect> effectClass) {
-        Effect toRemove = effects.stream().filter(effectClass::isInstance).findFirst().orElse(null);
-        if (toRemove != null) {
-            toRemove.end();
-            effects.remove(toRemove);
+    public boolean hasEffect(EEffect effectEnum) {
+        return effects.containsKey(effectEnum);
+    }
+
+    public boolean removeEffect(EEffect effectEnum) {
+        IEffect removed = effects.remove(effectEnum);
+        if (removed != null) {
+            removed.end();
             return true;
         } else return false;
     }
@@ -82,10 +93,10 @@ public class Player {
         if (!alive) return;
         role.end();
 
-        for (Effect effect : effects) {
+        for (IEffect effect : effects.values()) {
             effect.end();
         }
-        effects = new ArrayList<>();
+        effects.clear();
 
         structure.removeAllActions(this);
 

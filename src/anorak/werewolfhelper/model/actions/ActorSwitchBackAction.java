@@ -20,8 +20,6 @@ public class ActorSwitchBackAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
         player.changeRole(ERole.ACTOR.create());
-
-        structure.removeAllActions(this);
     }
 
     @Override

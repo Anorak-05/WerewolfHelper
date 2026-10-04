@@ -2,6 +2,7 @@ package anorak.werewolfhelper.model.util;
 
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.effects.EffectVoted;
 
 import java.util.List;
@@ -28,9 +29,9 @@ public class VoteResult {
     private List<Vote> getVoteResults() {
         return GlobalState.getInstance().getGame().getPlayers()
                 .excludeDead()
-                .includeHasEffect(EffectVoted.class)
+                .includeHasEffect(EEffect.VOTED)
                 .get().stream()
-                .map(p -> new Vote(p, p.getEffect(EffectVoted.class).getVotes()))
+                .map(p -> new Vote(p, p.getEffect(EEffect.VOTED, EffectVoted.class).getVotes()))
                 .sorted((a, b) -> b.votes - a.votes)
                 .toList();
     }

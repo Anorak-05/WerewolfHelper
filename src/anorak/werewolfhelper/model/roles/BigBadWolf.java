@@ -2,8 +2,8 @@ package anorak.werewolfhelper.model.roles;
 
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.BigBadWolfAction;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.Role;
-import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class BigBadWolf extends Role {
@@ -18,6 +18,6 @@ public class BigBadWolf extends Role {
 
         structure.addAction(this, new BigBadWolfAction());
 
-        player.addEffect(new EffectIsWerewolf(player, structure));
+        player.addEffect(EEffect.IS_WEREWOLF);
     }
 }

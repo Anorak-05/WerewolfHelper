@@ -1,11 +1,10 @@
 package anorak.werewolfhelper.model.roles;
 
 import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
-import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.base.Role;
-import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
@@ -26,7 +25,7 @@ public class WolfHound extends Role {
                 boolean isWolfhoundEvil = new UIBooleanRequest("Wolfhound", "Did the wolfhound wake up together with the Werewolves?").request();
 
                 if (isWolfhoundEvil) {
-                    player.addEffect(new EffectIsWerewolf(player, structure));
+                    player.addEffect(EEffect.IS_WEREWOLF);
                 }
             }
 

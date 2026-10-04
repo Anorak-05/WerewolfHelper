@@ -2,25 +2,30 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
+import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 
-public class BitterOldManWinCheckAction implements IGameEventAction {
+public class KillRemainingLoverAction implements IGameEventAction {
+    private final Player killedLovedOne;
+
+    public KillRemainingLoverAction(Player killedLovedOne) {
+        this.killedLovedOne = killedLovedOne;
+    }
+
     @Override
     public void respondToGameEvent() {
-        int numHated = GlobalState.getInstance().getGame().getPlayers()
+        List<Player> lovers = GlobalState.getInstance().getGame().getPlayers()
                 .excludeDead()
-                .includeHasEffect(EEffect.HATED_BY_BITTER_OLD_MAN)
-                .get().size();
+                .includeHasEffect(EEffect.IN_LOVE)
+                .get();
 
-        if (numHated == 0) {
-            new UIDisplayRequest("BitterOldMan", "Every person in the village that the Bitter Old Man hates is dead.").request();
-            new UIDisplayRequest("BitterOldMan", "Game ended - Bitter Old Man won").request();
-
-            GlobalState.getInstance().getGame().endGame();
+        for(Player lover : lovers) {
+            new UIDisplayRequest("Amor", "Due to their undying love for " + killedLovedOne + ", " + lover + " will also die.").request();
+            lover.die();
         }
     }
 

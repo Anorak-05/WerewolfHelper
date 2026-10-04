@@ -4,8 +4,8 @@ import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class WhiteWolfAction implements IGameEventAction {
                     .fromPlayers(
                             GlobalState.getInstance().getGame().getPlayers()
                                     .excludeDead()
-                                    .includeHasEffect(EffectIsWerewolf.class)
+                                    .includeHasEffect(EEffect.IS_WEREWOLF)
                                     .get())
                     .request();
             toKill.die();

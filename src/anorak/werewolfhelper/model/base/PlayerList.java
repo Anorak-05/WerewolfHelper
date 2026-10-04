@@ -1,6 +1,7 @@
 package anorak.werewolfhelper.model.base;
 
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +18,12 @@ public class PlayerList {
         this.players = players;
     }
 
-    public PlayerList includeHasEffect(Class<? extends Effect> effectClass) {
-        return new PlayerList(players.filter(p -> p.hasEffect(effectClass)));
+    public PlayerList includeHasEffect(EEffect effectEnum) {
+        return new PlayerList(players.filter(p -> p.hasEffect(effectEnum)));
     }
 
-    public PlayerList excludeHasEffect(Class<? extends Effect> effectClass) {
-        return new PlayerList(players.filter(p -> !p.hasEffect(effectClass)));
+    public PlayerList excludeHasEffect(EEffect effectEnum) {
+        return new PlayerList(players.filter(p -> !p.hasEffect(effectEnum)));
     }
 
     public PlayerList includeHasRole(Class<? extends Role> roleClass) {

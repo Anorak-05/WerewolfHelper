@@ -1,22 +1,14 @@
 package anorak.werewolfhelper.model.effects;
 
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.base.Effect;
+import anorak.werewolfhelper.model.actions.KillRemainingLoverAction;
+import anorak.werewolfhelper.model.actions.base.OneTimeAction;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class EffectInLove extends Effect {
-    Player otherLover;
+    EffectInLove(EEffect effectEnum, Player player, GameStructure structure) {
+        super(effectEnum, player, structure);
 
-    public EffectInLove(Player player, GameStructure structure, Player otherLover) {
-        super(player, structure);
-
-        this.otherLover = otherLover;
-    }
-
-    @Override
-    public void end() {
-        super.end();
-
-        otherLover.die();
+        OneTimeAction.createAndAdd(structure, new KillRemainingLoverAction(player));
     }
 }

@@ -3,8 +3,8 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIMultiplePlayersRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectHatedByBitterOldMan;
 import anorak.werewolfhelper.model.roles.BitterOldMan;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
@@ -35,7 +35,7 @@ public class BitterOldManAction implements IGameEventAction {
             hatedByBitterOldMan = groupA;
         }
 
-        hatedByBitterOldMan.forEach(p -> p.addEffect(new EffectHatedByBitterOldMan(p, structure)));
+        hatedByBitterOldMan.forEach(p -> p.addEffect(EEffect.HATED_BY_BITTER_OLD_MAN));
     }
 
     @Override

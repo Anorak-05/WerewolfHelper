@@ -5,7 +5,6 @@ import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIRoleRequest;
 import anorak.werewolfhelper.controller.base.requests.UIStringRequest;
 import anorak.werewolfhelper.model.actions.*;
-import anorak.werewolfhelper.model.base.Effect;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.base.PlayerList;
 import anorak.werewolfhelper.model.structure.GamePhase;

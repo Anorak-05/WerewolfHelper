@@ -1,9 +1,8 @@
 package anorak.werewolfhelper.model.roles;
 
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.actions.ActorSwitchAction;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.Role;
-import anorak.werewolfhelper.model.effects.EffectIsActor;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class Actor extends Role {
@@ -15,6 +14,6 @@ public class Actor extends Role {
     public void setup(Player player, GameStructure structure) {
         super.setup(player, structure);
 
-        player.addEffect(new EffectIsActor(player, structure));
+        player.addEffect(EEffect.IS_ACTOR);
     }
 }

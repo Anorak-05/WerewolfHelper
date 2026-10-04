@@ -3,8 +3,8 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectIsCaptain;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
@@ -25,7 +25,7 @@ public class VoteCaptainAction implements IGameEventAction {
                 )
                 .request();
 
-        captain.addEffect(new EffectIsCaptain(captain, structure));
+        captain.addEffect(EEffect.IS_CAPTAIN);
 
         structure.removeAllActions(this);
     }

@@ -2,10 +2,9 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
-import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.base.PlayerList;
-import anorak.werewolfhelper.model.effects.EffectEnchanted;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class PiedPiperWinCheckAction implements IGameEventAction {
         PlayerList alivePlayers = GlobalState.getInstance().getGame().getPlayers()
                 .excludeDead();
 
-        int numEnchanted = alivePlayers.includeHasEffect(EffectEnchanted.class).get().size();
+        int numEnchanted = alivePlayers.includeHasEffect(EEffect.ENCHANTED).get().size();
         int numAlive = alivePlayers.get().size();
 
         if (numEnchanted + 1 >= numAlive) {

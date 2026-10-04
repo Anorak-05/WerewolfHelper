@@ -2,8 +2,8 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class BasicWinCheckAction implements IGameEventAction {
     public void respondToGameEvent() {
         int numAliveWerewolves = GlobalState.getInstance().getGame().getPlayers()
                 .excludeDead()
-                .includeHasEffect(EffectIsWerewolf.class)
+                .includeHasEffect(EEffect.IS_WEREWOLF)
                 .get()
                 .size();
         int numAlivePlayers = GlobalState.getInstance().getGame().getPlayers().excludeDead().get().size();

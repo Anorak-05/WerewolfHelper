@@ -3,6 +3,7 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIRoleRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.OneTimeAction;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.effects.EffectIsActor;
@@ -33,7 +34,7 @@ public class ActorSwitchAction implements IGameEventAction {
             player.changeRole(role);
             effect.useRoleSwitch();
 
-            structure.addAction(new ActorSwitchBackAction(player, structure));
+            OneTimeAction.createAndAdd(structure, new ActorSwitchBackAction(player, structure));
         }
     }
 

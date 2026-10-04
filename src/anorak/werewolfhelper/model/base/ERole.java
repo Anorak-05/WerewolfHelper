@@ -20,6 +20,7 @@ public enum ERole {
     HUNTER("Hunter", Hunter::new),
     KNIGHT_WITH_THE_RUSTY_SWORD("Knight With The Rusty Sword", KnightWithTheRustySword::new),
     LITTLE_GIRL("Little Girl", LittleGirl::new),
+    MISTRESS("Mistress", Mistress::new),
     OLD_ONE("Old One", OldOne::new),
     PIED_PIPER("Pied Piper", PiedPiper::new),
     PRIMAL_WOLF("Primal Wolf", PrimalWolf::new),

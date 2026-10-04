@@ -5,16 +5,26 @@ Old One: full implementation
 DevotedServant
 - implement some Edge Cases to do with Effects
 
-Dorfmatratze!!!!!!!!!
+Mistress
+- continue
 
 Test all roles
 Add List<Player> players for all UIPLayerRequests
 Adjusts getPriority according to Rules!!!
+- almost done, use real games for testing
 
 ---
 
+Game:
+- add the other Werwölfe: Der Pakt modules
+  - buildings + roles
+  - Event cards + roles
+
 System:
 - Programm arguments to rerun a game or start a new game from UI
+- rework some Actions / Effects with the ability of Disallowing Effects based on possessed Effects
+- remove Constructors in Actions where unnecessary
+- add multi-language support
 
 UI:
 - Android App and stuff

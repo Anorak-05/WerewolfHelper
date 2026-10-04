@@ -4,8 +4,8 @@ import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Game;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectIsWerewolf;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class BearLeaderAction implements IGameEventAction {
         Game.Neighbors neighbors = GlobalState.getInstance().getGame().getAliveNeighbors(player);
 
         boolean sensingWerewolf = Stream.of(neighbors.left().getFirst(), player, neighbors.right().getFirst())
-                .anyMatch(neighbor -> neighbor.hasEffect(EffectIsWerewolf.class));
+                .anyMatch(neighbor -> neighbor.hasEffect(EEffect.IS_WEREWOLF));
 
         if (sensingWerewolf) {
             new UIDisplayRequest("BearLeader", "The Bear leader senses a werewolf").request();

@@ -1,7 +1,6 @@
 package anorak.werewolfhelper.model.effects;
 
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.base.Effect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
@@ -12,8 +11,8 @@ public class EffectKilledByWerewolf extends Effect {
 
     IGameEventAction action;
 
-    public EffectKilledByWerewolf(Player player, GameStructure structure) {
-        super(player, structure);
+    EffectKilledByWerewolf(EEffect effectEnum, Player player, GameStructure structure) {
+        super(effectEnum, player, structure);
 
         action = new IGameEventAction() {
             @Override

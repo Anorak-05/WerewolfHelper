@@ -2,8 +2,8 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectKilledByWerewolf;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class SavedFromWerewolfKillAction implements IGameEventAction {
 
     @Override
     public void respondToGameEvent() {
-        if (player.removeEffect(EffectKilledByWerewolf.class)) {
+        if (player.removeEffect(EEffect.KILLED_BY_WEREWOLF)) {
             new UIDisplayRequest("Savior", player.getName() + " was saved by the Savior").request();
         }
     }

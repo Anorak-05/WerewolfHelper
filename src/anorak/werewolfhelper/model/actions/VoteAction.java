@@ -5,6 +5,7 @@ import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIIntRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.effects.EffectVoted;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -25,7 +26,9 @@ public class VoteAction implements IGameEventAction {
             int votes = new UIIntRequest("voting", "How many votes does " + toVote + " get?").request();
 
             if (votes > 0) {
-                toVote.addEffect(new EffectVoted(toVote, GlobalState.getInstance().getGame().getStructure(), votes));
+                toVote.addEffect(EEffect.VOTED);
+                toVote.getEffect(EEffect.VOTED, EffectVoted.class).setVotes(votes);
+
             }
         } while (new UIBooleanRequest("voting", "Vote for another Player?").request());
 

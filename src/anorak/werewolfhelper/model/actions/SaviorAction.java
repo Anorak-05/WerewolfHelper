@@ -3,8 +3,8 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.effects.EffectSaved;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
@@ -29,7 +29,7 @@ public class SaviorAction implements IGameEventAction {
                 "The Healer chooses who to protect from Werewolves this night")
                 .fromPlayers(availableToHeal)
                 .request();
-        toHeal.addEffect(new EffectSaved(toHeal, structure));
+        toHeal.addEffect(EEffect.SAVED);
     }
 
     @Override
