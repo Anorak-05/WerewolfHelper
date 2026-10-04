@@ -42,7 +42,7 @@ public class PrimalWolfAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 20   ;
+        return 20;
     }
 
     @Override

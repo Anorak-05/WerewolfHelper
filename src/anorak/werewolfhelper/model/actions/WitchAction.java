@@ -13,14 +13,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WitchAction implements IGameEventAction {
-    private final Player player;
 
     private int numHealing = 1;
     private int numKilling = 1;
-
-    public WitchAction(Player player) {
-        this.player = player;
-    }
 
     @Override
     public void respondToGameEvent() {

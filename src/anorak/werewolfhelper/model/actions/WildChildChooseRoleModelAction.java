@@ -34,7 +34,7 @@ public class WildChildChooseRoleModelAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 0;
+        return 80;
     }
 
     @Override

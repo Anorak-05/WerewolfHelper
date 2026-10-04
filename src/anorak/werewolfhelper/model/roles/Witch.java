@@ -15,6 +15,6 @@ public class Witch extends Role {
     public void setup(Player player, GameStructure structure) {
         super.setup(player, structure);
 
-        structure.addAction(this, new WitchAction(player));
+        structure.addAction(this, new WitchAction());
     }
 }

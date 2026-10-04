@@ -39,7 +39,7 @@ public class PiedPiperAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 10000;
+        return 50;
     }
 
     @Override

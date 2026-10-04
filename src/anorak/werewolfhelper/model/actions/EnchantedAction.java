@@ -16,7 +16,7 @@ public class EnchantedAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 10100;
+        return 60;
     }
 
     @Override

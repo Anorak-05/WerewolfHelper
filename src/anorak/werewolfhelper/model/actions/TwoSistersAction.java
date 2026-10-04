@@ -19,11 +19,11 @@ public class TwoSistersAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 0;
+        return 60;
     }
 
     @Override
     public List<GamePhase> getPhases() {
-        return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT);
+        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
     }
 }

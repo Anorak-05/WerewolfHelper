@@ -6,19 +6,19 @@ import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 
-public class ExposedFoolAction implements IGameEventAction {
+public class StutteringJudgeChooseSignAction implements IGameEventAction {
     @Override
     public void respondToGameEvent() {
-        new UIDisplayRequest("Fool", "The fool may not vote anymore").request();
+        new UIDisplayRequest("StutteringJudge", "Choose a sign for the Stuttering Judge").request();
     }
 
     @Override
     public int getPriority() {
-        return 10000;
+        return 50;
     }
 
     @Override
     public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_VOTE);
+        return List.of(GamePhase.PRE_FIRST_NIGHT);
     }
 }

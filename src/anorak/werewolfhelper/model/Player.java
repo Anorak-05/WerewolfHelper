@@ -79,6 +79,7 @@ public class Player {
     // The order here is really tricky to get right for all Effects and Actions to work properly
     // Signs of a badly designed system? Perhaps.
     public void die() {
+        if (!alive) return;
         role.end();
 
         for (Effect effect : effects) {

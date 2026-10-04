@@ -34,11 +34,11 @@ public class SaviorAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 0;
+        return 110;
     }
 
     @Override
     public List<GamePhase> getPhases() {
-        return List.of(GamePhase.NIGHT);
+        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
     }
 }

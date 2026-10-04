@@ -26,11 +26,11 @@ public class SeerAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 5;
+        return 30;
     }
 
     @Override
     public List<GamePhase> getPhases() {
-        return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT);
+        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
     }
 }

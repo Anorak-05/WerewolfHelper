@@ -24,7 +24,7 @@ public class SavedFromWerewolfKillAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 31;
+        return 35;
     }
 
     @Override

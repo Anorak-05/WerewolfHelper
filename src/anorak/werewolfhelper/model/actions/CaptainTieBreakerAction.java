@@ -27,7 +27,7 @@ public class CaptainTieBreakerAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 0;
+        return 10;
     }
 
     @Override

@@ -19,11 +19,11 @@ public class ThreeBrothersAction implements IGameEventAction {
 
     @Override
     public int getPriority() {
-        return 0;
+        return 70;
     }
 
     @Override
     public List<GamePhase> getPhases() {
-        return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT);
+        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.FIRST_NIGHT);
     }
 }
