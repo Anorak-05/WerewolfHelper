@@ -26,4 +26,9 @@ public class TwoSistersAction implements IGameEventAction {
     public List<GamePhase> getPhases() {
         return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
     }
+
+    @Override
+    public boolean isGroupAction() {
+        return true;
+    }
 }

@@ -16,7 +16,7 @@ public enum EEffect {
     IS_ACTOR(EffectIsActor::new),
     IS_CAPTAIN(EffectIsCaptain::new),
     IS_WEREWOLF(EffectIsWerewolf::new),
-    KILLED_BY_WEREWOLF(EffectKilledByWerewolf::new),
+    KILLED_BY_WEREWOLF(EffectKilledByWerewolf::new, EEffectType.KILL_EFFECT),
     NOT_HOME(EffectNotHome::new),
     ROLE_MODEL(EffectRoleModel::new),
     SAVED(EffectSaved::new),
@@ -25,12 +25,23 @@ public enum EEffect {
     VOTED(EffectVoted::new);
 
     private final EffectConstructor constructor;
+    private final EEffectType type;
 
     EEffect(EffectConstructor constructor) {
         this.constructor = constructor;
+        this.type = EEffectType.DEFAULT;
+    }
+
+    EEffect(EffectConstructor constructor, EEffectType type) {
+        this.constructor = constructor;
+        this.type = type;
     }
 
     public IEffect construct(Player player, GameStructure structure) {
         return constructor.construct(this, player, structure);
+    }
+
+    public EEffectType getType() {
+        return type;
     }
 }

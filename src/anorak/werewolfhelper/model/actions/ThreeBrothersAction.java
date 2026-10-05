@@ -26,4 +26,9 @@ public class ThreeBrothersAction implements IGameEventAction {
     public List<GamePhase> getPhases() {
         return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.FIRST_NIGHT);
     }
+
+    @Override
+    public boolean isGroupAction() {
+        return true;
+    }
 }

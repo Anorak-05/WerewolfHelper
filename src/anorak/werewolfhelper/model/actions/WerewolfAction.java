@@ -32,4 +32,9 @@ public class WerewolfAction implements IGameEventAction {
     public List<GamePhase> getPhases() {
         return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT);
     }
+
+    @Override
+    public boolean isGroupAction() {
+        return true;
+    }
 }

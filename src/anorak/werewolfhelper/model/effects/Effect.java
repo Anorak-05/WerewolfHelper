@@ -33,4 +33,19 @@ public class Effect implements IEffect {
     public EEffect getEffectEnum() {
         return effectEnum;
     }
+
+    @Override
+    public boolean is(EEffect other) {
+        return other == effectEnum;
+    }
+
+    @Override
+    public boolean is(Effect other) {
+        return other.getEffectEnum() == effectEnum;
+    }
+
+    @Override
+    public boolean is(EEffectType other) {
+        return other == effectEnum.getType();
+    }
 }
