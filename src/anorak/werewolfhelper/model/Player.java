@@ -28,8 +28,9 @@ public class Player {
     }
 
     public void setup(GameStructure gameStructure) {
-        role.setup(this, gameStructure);
         this.structure = gameStructure;
+
+        role.setup(this, gameStructure);
     }
 
     public void vote() {
