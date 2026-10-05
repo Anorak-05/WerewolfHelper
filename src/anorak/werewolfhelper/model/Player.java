@@ -3,6 +3,7 @@ package anorak.werewolfhelper.model;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.effects.EEffect;
+import anorak.werewolfhelper.model.effects.EEffectType;
 import anorak.werewolfhelper.model.effects.Effect;
 import anorak.werewolfhelper.model.effects.IEffect;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -49,6 +50,14 @@ public class Player {
         return effects.put(effect.getEffectEnum(), effect);
     }
 
+    public IEffect addEffectGuaranteed(EEffect effectEnum) {
+        if (effects.containsKey(effectEnum))
+            return null;
+
+        IEffect effect = effectEnum.construct(this, structure);
+        return effects.put(effect.getEffectEnum(), effect);
+    }
+
     public IEffect getEffect(EEffect effectEnum) {
         return effects.get(effectEnum);
     }
@@ -59,6 +68,10 @@ public class Player {
 
     public boolean hasEffect(EEffect effectEnum) {
         return effects.containsKey(effectEnum);
+    }
+
+    public boolean hasEffect(EEffectType effectType) {
+        return effects.keySet().stream().anyMatch(e -> e.getType() == effectType);
     }
 
     public boolean removeEffect(EEffect effectEnum) {

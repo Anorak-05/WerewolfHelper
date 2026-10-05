@@ -14,6 +14,6 @@ public class EffectNotHome extends Effect {
 
     @Override
     public boolean allowAddOtherEffect(IEffect effect) {
-        return !effect.is(EEffectType.KILL_EFFECT);
+        return effect.is(EEffect.KILLED_BY_SLEEPING_PARTNER) || !effect.is(EEffectType.KILL_EFFECT);
     }
 }

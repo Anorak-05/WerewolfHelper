@@ -30,9 +30,4 @@ public class WerewolfAction extends Action {
     public boolean isGroupAction() {
         return true;
     }
-
-    @Override
-    public boolean isGroupAction() {
-        return true;
-    }
 }

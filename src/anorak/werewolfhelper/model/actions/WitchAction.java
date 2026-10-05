@@ -37,7 +37,7 @@ public class WitchAction extends Action {
                 Player toHeal = new UIPlayerRequest("witch","Wähle einen Toten")
                         .fromPlayers(dyingPlayers)
                         .request();
-                toHeal.getEffect(EEffect.KILLED_BY_WEREWOLF).end();
+                toHeal.removeEffect(EEffect.KILLED_BY_WEREWOLF);
             }
         }
 
@@ -52,7 +52,7 @@ public class WitchAction extends Action {
                         )
                         .request();
 
-                toKill.die();
+                toKill.addEffect(EEffect.KILLED_BY_WITCH_POISON);
             }
         }
     }

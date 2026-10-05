@@ -9,7 +9,6 @@ public class EffectIsWerewolf extends Effect {
     EffectIsWerewolf(EEffect effectEnum, Player player, GameStructure structure) {
         super(effectEnum, player, structure);
 
-
         structure.addAction(this, new WerewolfAction());
     }
 }

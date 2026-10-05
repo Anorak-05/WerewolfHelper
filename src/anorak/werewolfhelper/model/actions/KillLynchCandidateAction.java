@@ -9,6 +9,8 @@ public class KillLynchCandidateAction extends Action {
 
     public KillLynchCandidateAction(Player player) {
         super(EAction.KILL_LYNCH_CANDIDATE);
+
+        this.player = player;
     }
 
     @Override

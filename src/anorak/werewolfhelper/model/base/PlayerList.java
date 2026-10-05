@@ -2,6 +2,7 @@ package anorak.werewolfhelper.model.base;
 
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.effects.EEffect;
+import anorak.werewolfhelper.model.effects.EEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,16 @@ public class PlayerList {
         return new PlayerList(players.filter(p -> p.hasEffect(effectEnum)));
     }
 
+    public PlayerList includeHasEffect(EEffectType eEffectType) {
+        return new PlayerList(players.filter(p -> p.hasEffect(eEffectType)));
+    }
+
     public PlayerList excludeHasEffect(EEffect effectEnum) {
         return new PlayerList(players.filter(p -> !p.hasEffect(effectEnum)));
+    }
+
+    public PlayerList excludeHasEffect(EEffectType eEffectType) {
+        return new PlayerList(players.filter(p -> !p.hasEffect(eEffectType)));
     }
 
     public PlayerList includeHasRole(Class<? extends Role> roleClass) {

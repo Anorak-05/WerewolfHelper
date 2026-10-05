@@ -38,7 +38,7 @@ public enum EAction {
 
     // MORNING
     ANGEL_DEACTIVATE                (MORNING),
-    DIE_BY_WEREWOLF                 (MORNING),
+    EXECUTE_DEATHS_OF_NIGHT         (MORNING),
     BEAR_LEADER                     (MORNING),
     ANGEL_ACTIVATE                  (MORNING),
 

@@ -59,6 +59,7 @@ public class Game {
             player.setup(structure);
         }
 
+        structure.addAction(this, new ExecuteDeathsOfNightAction());
         structure.addAction(this, new VoteAction());
         structure.addAction(this, new LynchingAction());
         structure.addAction(this, new ClearVotesAction());
@@ -77,7 +78,6 @@ public class Game {
         this.overridePhase = overridePhase;
     }
 
-    // TODO: rebuild for Stuttering Judge -> add ability to jump to Phase and continue from there
     public void gameLoop() {
         do {
             structure.getEvent(currentPhase).trigger();
