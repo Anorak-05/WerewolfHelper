@@ -4,6 +4,8 @@ import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -11,10 +13,12 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.List;
 
-public class AmorAction implements IGameEventAction {
+public class AmorAction extends Action {
     GameStructure structure;
 
     public AmorAction(GameStructure structure) {
+        super(EAction.AMOR);
+
         this.structure = structure;
     }
 
@@ -36,15 +40,5 @@ public class AmorAction implements IGameEventAction {
         loverB.addEffect(EEffect.IN_LOVE);
 
         new UIDisplayRequest("Amor", "Touch the Players that are in love: " + loverA + ", " + loverB).request();
-    }
-
-    @Override
-    public int getPriority() {
-        return 20;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_FIRST_NIGHT);
     }
 }

@@ -60,7 +60,7 @@ public class Game {
         }
 
         structure.addAction(this, new VoteAction());
-        structure.addAction(this, new LynchingAction(structure));
+        structure.addAction(this, new LynchingAction());
         structure.addAction(this, new ClearVotesAction());
         structure.addAction(this, new BasicWinCheckAction());
         structure.addAction(new VoteCaptainAction(structure));

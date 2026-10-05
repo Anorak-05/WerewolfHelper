@@ -8,4 +8,8 @@ public interface IGameEventAction {
     void respondToGameEvent();
     int getPriority();
     List<GamePhase> getPhases();
+
+    default boolean isGroupAction() {
+        return false;
+    }
 }

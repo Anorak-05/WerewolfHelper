@@ -7,19 +7,16 @@ import java.util.ArrayList;
 
 public class GameEvent {
 
-    private GameEventActionList gameEventActions;
-    private boolean sorted;
+    private final GameEventActionList gameEventActions;
 
     private boolean stopIterating = false;
 
     public GameEvent() {
         gameEventActions = new GameEventActionList(new ArrayList<>());
-        sorted = true;
     }
 
     public void addAction(IGameEventAction action) {
         gameEventActions.add(action);
-        sorted = false;
     }
 
     public void removeAction(IGameEventAction action) {
@@ -38,11 +35,10 @@ public class GameEvent {
 
         for (IGameEventAction action : gameEventActions) {
             if (stopIterating) break;
-            if (lastActionClass == null || !lastActionClass.isInstance(action))
+            if (!action.isGroupAction() || lastActionClass == null || !lastActionClass.isInstance(action))
                 action.respondToGameEvent();
             lastActionClass = action.getClass();
         }
         stopIterating = false;
-
     }
 }

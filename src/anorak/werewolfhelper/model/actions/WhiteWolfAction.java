@@ -4,14 +4,20 @@ import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 
-public class WhiteWolfAction implements IGameEventAction {
+public class WhiteWolfAction extends Action {
     boolean mayKillTwice = true;
+
+    public WhiteWolfAction() {
+        super(EAction.WHITE_WOLF);
+    }
 
     @Override
     public void respondToGameEvent() {
@@ -29,15 +35,5 @@ public class WhiteWolfAction implements IGameEventAction {
         }
 
         mayKillTwice = !mayKillTwice;
-    }
-
-    @Override
-    public int getPriority() {
-        return 15;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.NIGHT);
     }
 }

@@ -2,6 +2,8 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.base.PlayerList;
@@ -9,7 +11,10 @@ import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 
-public class PiedPiperWinCheckAction implements IGameEventAction {
+public class PiedPiperWinCheckAction extends Action {
+    public PiedPiperWinCheckAction() {
+        super(EAction.PIED_PIPER_WIN_CHECK);
+    }
 
     @Override
     public void respondToGameEvent() {
@@ -25,15 +30,5 @@ public class PiedPiperWinCheckAction implements IGameEventAction {
 
             GlobalState.getInstance().getGame().endGame();
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 10200;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT, GamePhase.PLAYER_KILLED);
     }
 }

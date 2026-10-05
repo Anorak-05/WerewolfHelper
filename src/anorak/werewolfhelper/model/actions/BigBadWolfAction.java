@@ -3,16 +3,22 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 
-public class BigBadWolfAction implements IGameEventAction {
+public class BigBadWolfAction extends Action {
 
     private int numWolfes;
     private boolean canKillAgain = true;
+
+    public BigBadWolfAction() {
+        super(EAction.BIG_BAD_WOLF);
+    }
 
     private boolean canKillAgain() {
         return canKillAgain && (canKillAgain = numWolfes >= GlobalState.getInstance().getGame().getPlayers()
@@ -40,15 +46,5 @@ public class BigBadWolfAction implements IGameEventAction {
                     .request();
             toKill.die();
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 30;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT);
     }
 }

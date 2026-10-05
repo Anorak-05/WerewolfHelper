@@ -1,6 +1,7 @@
 package anorak.werewolfhelper.model.effects;
 
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.KillLynchCandidateAction;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
@@ -11,21 +12,6 @@ public class EffectStagedForLynching extends Effect {
     EffectStagedForLynching(EEffect effectEnum, Player player, GameStructure structure) {
         super(effectEnum, player, structure);
 
-        structure.addAction(this, new IGameEventAction() {
-            @Override
-            public void respondToGameEvent() {
-                player.die();
-            }
-
-            @Override
-            public int getPriority() {
-                return Integer.MAX_VALUE;
-            }
-
-            @Override
-            public List<GamePhase> getPhases() {
-                return List.of(GamePhase.POST_VOTE);
-            }
-        });
+        structure.addAction(this, new KillLynchCandidateAction(player));
     }
 }

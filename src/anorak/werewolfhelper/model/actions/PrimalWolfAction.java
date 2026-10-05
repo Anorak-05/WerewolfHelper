@@ -5,6 +5,8 @@ import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -13,11 +15,13 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 import java.util.Arrays;
 import java.util.List;
 
-public class PrimalWolfAction implements IGameEventAction {
+public class PrimalWolfAction extends Action {
     int transformations = 1;
     GameStructure structure;
 
     public PrimalWolfAction(GameStructure structure) {
+        super(EAction.PRIMAL_WOLF);
+
         this.structure = structure;
     }
 
@@ -37,15 +41,5 @@ public class PrimalWolfAction implements IGameEventAction {
                 new UIDisplayRequest("PrimalWolf", "Touch the converted Player").request();
             }
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 20;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT);
     }
 }

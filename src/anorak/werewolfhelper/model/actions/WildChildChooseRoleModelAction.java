@@ -3,6 +3,8 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.roles.WildChild;
@@ -11,10 +13,12 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.List;
 
-public class WildChildChooseRoleModelAction implements IGameEventAction {
+public class WildChildChooseRoleModelAction extends Action {
     GameStructure structure;
 
     public WildChildChooseRoleModelAction(GameStructure structure) {
+        super(EAction.WILD_CHILD_CHOOSE_ROLE_MODEL);
+
         this.structure = structure;
     }
 
@@ -30,15 +34,5 @@ public class WildChildChooseRoleModelAction implements IGameEventAction {
                 .request();
 
         roleModel.addEffect(EEffect.ROLE_MODEL);
-    }
-
-    @Override
-    public int getPriority() {
-        return 80;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_FIRST_NIGHT);
     }
 }

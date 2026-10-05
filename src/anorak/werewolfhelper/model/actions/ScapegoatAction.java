@@ -4,6 +4,8 @@ import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIMultiplePlayersRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.roles.Scapegoat;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -12,11 +14,13 @@ import anorak.werewolfhelper.model.util.VoteResult;
 
 import java.util.List;
 
-public class ScapegoatAction implements IGameEventAction {
+public class ScapegoatAction extends Action {
     Player player;
     GameStructure structure;
 
     public ScapegoatAction(Player player, GameStructure structure) {
+        super(EAction.SCAPEGOAT);
+
         this.player = player;
         this.structure = structure;
     }
@@ -42,15 +46,5 @@ public class ScapegoatAction implements IGameEventAction {
 
             voteResult.discardVote();
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.POST_VOTE);
     }
 }

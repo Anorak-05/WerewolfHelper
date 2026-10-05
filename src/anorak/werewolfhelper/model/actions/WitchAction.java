@@ -5,6 +5,8 @@ import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -12,10 +14,14 @@ import anorak.werewolfhelper.model.structure.GamePhase;
 import java.util.Arrays;
 import java.util.List;
 
-public class WitchAction implements IGameEventAction {
+public class WitchAction extends Action {
 
     private int numHealing = 1;
     private int numKilling = 1;
+
+    public WitchAction() {
+        super(EAction.WITCH);
+    }
 
     @Override
     public void respondToGameEvent() {
@@ -42,22 +48,14 @@ public class WitchAction implements IGameEventAction {
                 numKilling--;
                 Player toKill = new UIPlayerRequest("Witch","Wähle dein Opfer")
                         .fromPlayers(
-                                GlobalState.getInstance().getGame().getPlayers().get()
+                                GlobalState.getInstance().getGame().getPlayers()
+                                        .excludeDead()
+                                        .get()
                         )
                         .request();
 
                 toKill.die();
             }
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 40;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT);
     }
 }

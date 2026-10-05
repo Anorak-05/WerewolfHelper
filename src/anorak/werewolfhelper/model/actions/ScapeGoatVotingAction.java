@@ -2,6 +2,8 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
@@ -9,11 +11,13 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 import java.util.Arrays;
 import java.util.List;
 
-public class ScapeGoatVotingAction implements IGameEventAction {
+public class ScapeGoatVotingAction extends Action {
     List<Player> players;
     GameStructure structure;
 
     public ScapeGoatVotingAction(List<Player> players, GameStructure structure) {
+        super(EAction.SCAPEGOAT_VOTING);
+
         this.players = players;
         this.structure = structure;
     }
@@ -24,15 +28,5 @@ public class ScapeGoatVotingAction implements IGameEventAction {
         + Arrays.deepToString(players.toArray())).request();
 
         structure.removeAllActions(this);
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_VOTE);
     }
 }

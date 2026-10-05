@@ -3,6 +3,8 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
@@ -10,11 +12,13 @@ import anorak.werewolfhelper.model.util.VoteResult;
 
 import java.util.List;
 
-public class FoolAction implements IGameEventAction {
+public class FoolAction extends Action {
     Player player;
     GameStructure structure;
 
     public FoolAction(Player player, GameStructure structure) {
+        super(EAction.FOOL);
+
         this.player = player;
         this.structure = structure;
     }
@@ -32,15 +36,5 @@ public class FoolAction implements IGameEventAction {
             structure.addAction(player, new ExposedFoolAction());
             voteResult.discardVote();
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.POST_VOTE);
     }
 }

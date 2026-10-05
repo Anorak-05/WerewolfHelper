@@ -2,13 +2,19 @@ package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 
-public class BitterOldManWinCheckAction implements IGameEventAction {
+public class BitterOldManWinCheckAction extends Action {
+    public BitterOldManWinCheckAction() {
+        super(EAction.BITTER_OLD_MAN_WIN_CHECK);
+    }
+
     @Override
     public void respondToGameEvent() {
         int numHated = GlobalState.getInstance().getGame().getPlayers()
@@ -22,15 +28,5 @@ public class BitterOldManWinCheckAction implements IGameEventAction {
 
             GlobalState.getInstance().getGame().endGame();
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PLAYER_KILLED);
     }
 }

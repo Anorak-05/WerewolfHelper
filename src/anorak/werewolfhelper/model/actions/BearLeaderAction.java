@@ -4,6 +4,8 @@ import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Game;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -11,10 +13,12 @@ import anorak.werewolfhelper.model.structure.GamePhase;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class BearLeaderAction implements IGameEventAction {
+public class BearLeaderAction extends Action {
     Player player;
 
     public BearLeaderAction(Player player) {
+        super(EAction.BEAR_LEADER);
+
         this.player = player;
     }
 
@@ -28,15 +32,5 @@ public class BearLeaderAction implements IGameEventAction {
         if (sensingWerewolf) {
             new UIDisplayRequest("BearLeader", "The Bear leader senses a werewolf").request();
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 10;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.MORNING);
     }
 }

@@ -25,6 +25,7 @@ System:
 - rework some Actions / Effects with the ability of Disallowing Effects based on possessed Effects
 - remove Constructors in Actions where unnecessary
 - add multi-language support
+- add ERole to Role as with Effects for cleaner Comparisons
 
 UI:
 - Android App and stuff

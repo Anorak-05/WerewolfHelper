@@ -3,6 +3,8 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIMultiplePlayersRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.roles.BitterOldMan;
@@ -11,10 +13,12 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.List;
 
-public class BitterOldManAction implements IGameEventAction {
+public class BitterOldManAction extends Action {
     GameStructure structure;
 
     public BitterOldManAction(GameStructure structure) {
+        super(EAction.BITTER_OLD_MAN);
+
         this.structure = structure;
     }
 
@@ -36,15 +40,5 @@ public class BitterOldManAction implements IGameEventAction {
         }
 
         hatedByBitterOldMan.forEach(p -> p.addEffect(EEffect.HATED_BY_BITTER_OLD_MAN));
-    }
-
-    @Override
-    public int getPriority() {
-        return -10;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_FIRST_NIGHT);
     }
 }

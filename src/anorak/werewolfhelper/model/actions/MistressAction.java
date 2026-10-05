@@ -3,6 +3,8 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
@@ -10,13 +12,15 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.List;
 
-public class MistressAction implements IGameEventAction {
+public class MistressAction extends Action {
     Player player;
     GameStructure structure;
 
     Player previouslySleptWith;
 
     public MistressAction(Player player, GameStructure structure) {
+        super(EAction.MISTRESS);
+
         this.player = player;
         this.structure = structure;
     }
@@ -37,15 +41,5 @@ public class MistressAction implements IGameEventAction {
         if (sleepWith != player) {
             player.addEffect(EEffect.NOT_HOME);
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 120;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
     }
 }
