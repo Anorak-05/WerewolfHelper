@@ -2,8 +2,8 @@ package anorak.werewolfhelper.model.roles;
 
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.base.Role;
+import anorak.werewolfhelper.model.effects.EEffect;
 
 import java.util.List;
 

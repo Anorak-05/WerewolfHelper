@@ -1,7 +1,7 @@
 package anorak.werewolfhelper.model.structure;
 
+import anorak.werewolfhelper.model.actions.base.IGameEventAction;
 import anorak.werewolfhelper.model.base.game_event_action_list.GameEventActionList;
-import anorak.werewolfhelper.model.base.IGameEventAction;
 
 import java.util.ArrayList;
 

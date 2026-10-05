@@ -1,7 +1,7 @@
 package anorak.werewolfhelper.logging;
 
 public class Log {
-    protected String message;
+    protected final String message;
 
     public Log(String message) {
         this.message = message;

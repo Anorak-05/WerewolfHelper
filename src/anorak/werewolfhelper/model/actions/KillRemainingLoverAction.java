@@ -3,16 +3,18 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 
-public class KillRemainingLoverAction implements IGameEventAction {
+public class KillRemainingLoverAction extends Action {
     private final Player killedLovedOne;
 
     public KillRemainingLoverAction(Player killedLovedOne) {
+        super(EAction.KILL_REMAINING_LOVER);
+
         this.killedLovedOne = killedLovedOne;
     }
 
@@ -27,15 +29,5 @@ public class KillRemainingLoverAction implements IGameEventAction {
             new UIDisplayRequest("Amor", "Due to their undying love for " + killedLovedOne + ", " + lover + " will also die.").request();
             lover.die();
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PLAYER_KILLED);
     }
 }

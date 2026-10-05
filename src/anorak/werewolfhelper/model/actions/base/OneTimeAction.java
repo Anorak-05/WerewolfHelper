@@ -1,6 +1,5 @@
 package anorak.werewolfhelper.model.actions.base;
 
-import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 

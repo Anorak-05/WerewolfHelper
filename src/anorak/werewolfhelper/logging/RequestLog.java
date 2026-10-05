@@ -1,7 +1,7 @@
 package anorak.werewolfhelper.logging;
 
 public class RequestLog extends Log{
-    public ILoggableResult result;
+    public final ILoggableResult result;
 
     public RequestLog(String message, ILoggableResult result) {
         super(message);

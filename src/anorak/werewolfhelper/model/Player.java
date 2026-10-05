@@ -1,10 +1,10 @@
 package anorak.werewolfhelper.model;
 
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
+import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.effects.Effect;
 import anorak.werewolfhelper.model.effects.IEffect;
-import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class Player {
     private Role role;
-    private Map<EEffect, IEffect> effects;
+    private final Map<EEffect, IEffect> effects;
     private final String name;
     private boolean alive;
 
@@ -28,8 +28,9 @@ public class Player {
     }
 
     public void setup(GameStructure gameStructure) {
-        role.setup(this, gameStructure);
         this.structure = gameStructure;
+
+        role.setup(this, gameStructure);
     }
 
     public void vote() {

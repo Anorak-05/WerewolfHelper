@@ -3,17 +3,19 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIBooleanRequest;
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.effects.EEffect;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.base.ERole;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
+import anorak.werewolfhelper.model.effects.EEffect;
 
 import java.util.List;
 
-public class DevotedServantAction implements IGameEventAction {
-    private Player player;
+public class DevotedServantAction extends Action {
+    private final Player player;
 
     public DevotedServantAction(Player player) {
+        super(EAction.DEVOTED_SERVANT);
+
         this.player = player;
     }
 
@@ -31,15 +33,5 @@ public class DevotedServantAction implements IGameEventAction {
             player.changeRole(ERole.getRoleByName(toBeLynched.getRole().getName()));
             toBeLynched.die();
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 10000;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.POST_VOTE);
     }
 }

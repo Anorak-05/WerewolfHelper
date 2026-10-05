@@ -6,14 +6,18 @@ import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Game;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
 
 import java.util.List;
 
-public class FoxAction implements IGameEventAction {
+public class FoxAction extends Action {
     boolean usedAction = false;
+
+    public FoxAction() {
+        super(EAction.FOX);
+    }
 
     @Override
     public void respondToGameEvent() {
@@ -39,15 +43,5 @@ public class FoxAction implements IGameEventAction {
                 new UIDisplayRequest("Fox", "There is no werewolf among the Group").request();
             }
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 40;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
     }
 }

@@ -3,19 +3,14 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
-import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.util.VoteResult;
 
-import java.util.List;
-
-public class LynchingAction implements IGameEventAction {
-    private GameStructure structure;
-
-    public LynchingAction(GameStructure structure) {
-        this.structure = structure;
+public class LynchingAction extends Action {
+    public LynchingAction() {
+        super(EAction.LYNCHING);
     }
 
     @Override
@@ -34,15 +29,5 @@ public class LynchingAction implements IGameEventAction {
         Player mostVoted = voteResult.getLynchingCandidate();
         mostVoted.addEffect(EEffect.STAGED_FOR_LYNCHING);
         voteResult.discardVote();
-    }
-
-    @Override
-    public int getPriority() {
-        return 1000;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.POST_VOTE);
     }
 }

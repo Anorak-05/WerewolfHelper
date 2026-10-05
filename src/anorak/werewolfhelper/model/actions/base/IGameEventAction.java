@@ -1,4 +1,4 @@
-package anorak.werewolfhelper.model.base;
+package anorak.werewolfhelper.model.actions.base;
 
 import anorak.werewolfhelper.model.structure.GamePhase;
 

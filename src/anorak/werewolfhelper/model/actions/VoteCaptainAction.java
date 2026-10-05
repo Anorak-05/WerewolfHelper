@@ -3,17 +3,17 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
-import java.util.List;
-
-public class VoteCaptainAction implements IGameEventAction {
-    GameStructure structure;
+public class VoteCaptainAction extends Action {
+    private final GameStructure structure;
 
     public VoteCaptainAction(GameStructure structure) {
+        super(EAction.VOTE_CAPTAIN);
+
         this.structure = structure;
     }
 
@@ -28,15 +28,5 @@ public class VoteCaptainAction implements IGameEventAction {
         captain.addEffect(EEffect.IS_CAPTAIN);
 
         structure.removeAllActions(this);
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_DISCUSSION);
     }
 }

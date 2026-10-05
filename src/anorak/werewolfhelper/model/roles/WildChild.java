@@ -15,7 +15,7 @@ public class WildChild extends Role {
     public void setup(Player player, GameStructure structure) {
         super.setup(player, structure);
 
-        structure.addAction(this, new WildChildChooseRoleModelAction(structure));
+        structure.addAction(this, new WildChildChooseRoleModelAction());
         structure.addAction(new WildChildTurnEvilAction(player, structure));
     }
 }

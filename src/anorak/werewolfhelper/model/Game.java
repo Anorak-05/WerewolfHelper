@@ -5,8 +5,8 @@ import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
 import anorak.werewolfhelper.controller.base.requests.UIRoleRequest;
 import anorak.werewolfhelper.controller.base.requests.UIStringRequest;
 import anorak.werewolfhelper.model.actions.*;
-import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.base.PlayerList;
+import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.util.VoteResult;
@@ -60,7 +60,7 @@ public class Game {
         }
 
         structure.addAction(this, new VoteAction());
-        structure.addAction(this, new LynchingAction(structure));
+        structure.addAction(this, new LynchingAction());
         structure.addAction(this, new ClearVotesAction());
         structure.addAction(this, new BasicWinCheckAction());
         structure.addAction(new VoteCaptainAction(structure));

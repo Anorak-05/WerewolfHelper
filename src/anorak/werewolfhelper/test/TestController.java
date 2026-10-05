@@ -6,15 +6,18 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.base.ERole;
 import anorak.werewolfhelper.model.base.Role;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 // This testcontroller does absolutely not care about input correctness.
 // It is just used to quickly simulate a game with all the inputs predefined
 
 public class TestController implements IUIController {
-    String[] input;
-    int index;
+    private final String[] input;
+    private int index;
 
     public static TestController fromFile(String path) {
         File file = new File(path);

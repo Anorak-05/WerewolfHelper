@@ -16,7 +16,7 @@ public class PiedPiper extends Role {
     public void setup(Player player, GameStructure structure) {
         super.setup(player, structure);
 
-        structure.addAction(this, new PiedPiperAction(structure));
+        structure.addAction(this, new PiedPiperAction());
         structure.addAction(this, new PiedPiperWinCheckAction());
     }
 }

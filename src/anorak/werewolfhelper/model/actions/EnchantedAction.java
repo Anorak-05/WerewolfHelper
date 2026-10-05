@@ -1,26 +1,18 @@
 package anorak.werewolfhelper.model.actions;
 
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 
-import java.util.List;
+public class EnchantedAction extends Action {
 
-public class EnchantedAction implements IGameEventAction {
+    public EnchantedAction() {
+        super(EAction.ENCHANTED);
+    }
 
     @Override
     public void respondToGameEvent() {
         new UIDisplayRequest("PiedPiper", "All enchanted players wake up and see each other")
                 .request();
-    }
-
-    @Override
-    public int getPriority() {
-        return 60;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.FIRST_NIGHT, GamePhase.NIGHT);
     }
 }

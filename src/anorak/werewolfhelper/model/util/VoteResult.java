@@ -9,8 +9,8 @@ import java.util.List;
 
 public class VoteResult {
 
-    static class Vote {
-        private Player player;
+    static final class Vote {
+        private final Player player;
         private int votes;
 
         public Vote(Player player, int votes) {

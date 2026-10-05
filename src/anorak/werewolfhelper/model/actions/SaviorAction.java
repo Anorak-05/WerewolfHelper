@@ -3,19 +3,17 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
-import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.List;
 
-public class SaviorAction implements IGameEventAction {
-    GameStructure structure;
-    Player lastHealed;
+public class SaviorAction extends Action {
+    private Player lastHealed;
 
-    public SaviorAction(GameStructure structure) {
-        this.structure = structure;
+    public SaviorAction() {
+        super(EAction.SAVIOR);
     }
 
     @Override
@@ -30,15 +28,6 @@ public class SaviorAction implements IGameEventAction {
                 .fromPlayers(availableToHeal)
                 .request();
         toHeal.addEffect(EEffect.SAVED);
-    }
-
-    @Override
-    public int getPriority() {
-        return 110;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.PRE_FIRST_NIGHT, GamePhase.PRE_NIGHT);
+        lastHealed = toHeal;
     }
 }

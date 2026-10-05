@@ -6,9 +6,8 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 public class Effect implements IEffect {
     private final EEffect effectEnum;
 
-    protected String name;
-    protected Player player;
-    protected GameStructure structure;
+    protected final Player player;
+    protected final GameStructure structure;
 
     Effect(EEffect effectEnum, Player player, GameStructure structure) {
         this.effectEnum = effectEnum;
@@ -20,11 +19,6 @@ public class Effect implements IEffect {
     @Override
     public void end() {
         structure.removeAllActions(this);
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override

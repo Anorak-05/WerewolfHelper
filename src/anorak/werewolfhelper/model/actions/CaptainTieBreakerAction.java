@@ -3,13 +3,14 @@ package anorak.werewolfhelper.model.actions;
 import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.requests.UIPlayerRequest;
 import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
+import anorak.werewolfhelper.model.actions.base.Action;
+import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.util.VoteResult;
 
-import java.util.List;
-
-public class CaptainTieBreakerAction implements IGameEventAction {
+public class CaptainTieBreakerAction extends Action {
+    public CaptainTieBreakerAction() {
+        super(EAction.CAPTAIN_TIEBREAKER);
+    }
 
     @Override
     public void respondToGameEvent() {
@@ -23,15 +24,5 @@ public class CaptainTieBreakerAction implements IGameEventAction {
                 .request();
 
         voteResult.setVotes(toLynch, voteResult.getVotes(toLynch) + 1);
-    }
-
-    @Override
-    public int getPriority() {
-        return 10;
-    }
-
-    @Override
-    public List<GamePhase> getPhases() {
-        return List.of(GamePhase.POST_VOTE);
     }
 }

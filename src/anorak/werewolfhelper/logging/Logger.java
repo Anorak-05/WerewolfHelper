@@ -1,7 +1,10 @@
 package anorak.werewolfhelper.logging;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,8 +13,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Logger implements ILogger {
-    List<Log> logs;
-    List<ILoggableResult> inputs;
+    private final List<Log> logs;
+    private final List<ILoggableResult> inputs;
 
     public Logger() {
         logs = new ArrayList<>();
