@@ -4,16 +4,13 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.base.ERole;
-import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class ActorSwitchBackAction extends Action {
-    GameStructure structure;
-    Player player;
+    private final Player player;
 
-    public ActorSwitchBackAction(Player player, GameStructure structure) {
+    public ActorSwitchBackAction(Player player) {
         super(EAction.ACTOR_SWITCH_BACK);
 
-        this.structure = structure;
         this.player = player;
     }
 

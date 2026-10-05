@@ -16,8 +16,8 @@ import java.util.List;
 // It is just used to quickly simulate a game with all the inputs predefined
 
 public class TestController implements IUIController {
-    String[] input;
-    int index;
+    private final String[] input;
+    private int index;
 
     public static TestController fromFile(String path) {
         File file = new File(path);

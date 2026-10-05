@@ -6,7 +6,7 @@ import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 
 public class MistressReturnHomeAction extends Action {
-    Player player;
+    private final Player player;
 
     public MistressReturnHomeAction(Player player) {
         super(EAction.MISTRESS_RETURN_HOME);

@@ -6,19 +6,16 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class MistressAction extends Action {
-    Player player;
-    GameStructure structure;
+    private final Player player;
 
-    Player previouslySleptWith;
+    private Player previouslySleptWith;
 
-    public MistressAction(Player player, GameStructure structure) {
+    public MistressAction(Player player) {
         super(EAction.MISTRESS);
 
         this.player = player;
-        this.structure = structure;
     }
 
     @Override

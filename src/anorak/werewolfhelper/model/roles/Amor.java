@@ -15,6 +15,6 @@ public class Amor extends Role {
     public void setup(Player player, GameStructure structure) {
         super.setup(player, structure);
 
-        structure.addAction(this, new AmorAction(structure));
+        structure.addAction(this, new AmorAction());
     }
 }

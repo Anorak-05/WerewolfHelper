@@ -11,7 +11,7 @@ import anorak.werewolfhelper.model.effects.EEffect;
 import java.util.stream.Stream;
 
 public class BearLeaderAction extends Action {
-    Player player;
+    private final Player player;
 
     public BearLeaderAction(Player player) {
         super(EAction.BEAR_LEADER);

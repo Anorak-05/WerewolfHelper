@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GameEventActionListIterator<T> implements Iterator<T> {
-    private List<T> list;
+    private final List<T> list;
     private int index = 0;
 
     public GameEventActionListIterator(List<T> list) {

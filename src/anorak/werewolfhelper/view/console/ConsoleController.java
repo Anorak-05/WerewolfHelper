@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleController implements IUIController {
-    static Scanner scanner = new Scanner(System.in);
+    static final Scanner scanner = new Scanner(System.in);
 
     public void write(String styling, String message) {
         System.out.println("[" + styling + "]\t" + message);

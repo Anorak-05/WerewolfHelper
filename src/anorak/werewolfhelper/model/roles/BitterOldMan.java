@@ -15,7 +15,7 @@ public class BitterOldMan extends Role {
     public void setup(Player player, GameStructure structure) {
         super.setup(player, structure);
 
-        structure.addAction(this, new BitterOldManAction(structure));
+        structure.addAction(this, new BitterOldManAction());
         structure.addAction(this, new BitterOldManWinCheckAction());
     }
 }

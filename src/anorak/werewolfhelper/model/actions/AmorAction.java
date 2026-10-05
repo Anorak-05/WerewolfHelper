@@ -7,15 +7,10 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class AmorAction extends Action {
-    GameStructure structure;
-
-    public AmorAction(GameStructure structure) {
+    public AmorAction() {
         super(EAction.AMOR);
-
-        this.structure = structure;
     }
 
     @Override

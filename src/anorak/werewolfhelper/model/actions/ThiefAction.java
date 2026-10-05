@@ -7,7 +7,7 @@ import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.base.Role;
 
 public class ThiefAction extends Action {
-    Player player;
+    private final Player player;
 
     public ThiefAction(Player player) {
         super(EAction.THIEF);

@@ -8,19 +8,15 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class PrimalWolfAction extends Action {
-    int transformations = 1;
-    GameStructure structure;
+    private int transformations = 1;
 
-    public PrimalWolfAction(GameStructure structure) {
+    public PrimalWolfAction() {
         super(EAction.PRIMAL_WOLF);
-
-        this.structure = structure;
     }
 
     @Override
@@ -37,6 +33,7 @@ public class PrimalWolfAction extends Action {
                 Player toConvert = new UIPlayerRequest("PrimalWolf", "Who does the Primal Wolf convert?").request();
                 toConvert.addEffect(EEffect.IS_WEREWOLF);
                 new UIDisplayRequest("PrimalWolf", "Touch the converted Player").request();
+                transformations--;
             }
         }
     }

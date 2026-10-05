@@ -11,9 +11,9 @@ import anorak.werewolfhelper.model.effects.EffectIsActor;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class ActorSwitchAction extends Action {
-    Player player;
-    EffectIsActor effect;
-    GameStructure structure;
+    private final Player player;
+    private final EffectIsActor effect;
+    private final GameStructure structure;
 
     public ActorSwitchAction(Player player, EffectIsActor effect, GameStructure structure) {
         super(EAction.ACTOR_SWITCH);
@@ -34,7 +34,7 @@ public class ActorSwitchAction extends Action {
             player.changeRole(role);
             effect.useRoleSwitch();
 
-            OneTimeAction.createAndAdd(structure, new ActorSwitchBackAction(player, structure));
+            OneTimeAction.createAndAdd(structure, new ActorSwitchBackAction(player));
         }
     }
 }

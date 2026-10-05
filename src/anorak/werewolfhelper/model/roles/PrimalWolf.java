@@ -16,7 +16,7 @@ public class PrimalWolf extends Role {
     public void setup(Player player, GameStructure structure) {
         super.setup(player, structure);
 
-        structure.addAction(this, new PrimalWolfAction(structure));
+        structure.addAction(this, new PrimalWolfAction());
 
         player.addEffect(EEffect.IS_WEREWOLF);
     }

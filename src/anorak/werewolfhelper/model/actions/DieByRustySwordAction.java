@@ -5,7 +5,7 @@ import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 
 public class DieByRustySwordAction extends Action {
-    Player player;
+    private final Player player;
 
     public DieByRustySwordAction(Player player) {
         super(EAction.DIE_BY_RUSTY_SWORD);

@@ -9,8 +9,8 @@ import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class WildChildTurnEvilAction extends Action {
-    Player player;
-    GameStructure structure;
+    private final Player player;
+    private final GameStructure structure;
 
     public WildChildTurnEvilAction(Player player, GameStructure structure) {
         super(EAction.WILD_CHILD_TURN_EVIL);

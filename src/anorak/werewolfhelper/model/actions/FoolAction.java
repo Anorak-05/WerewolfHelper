@@ -9,8 +9,8 @@ import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.util.VoteResult;
 
 public class FoolAction extends Action {
-    Player player;
-    GameStructure structure;
+    private final Player player;
+    private final GameStructure structure;
 
     public FoolAction(Player player, GameStructure structure) {
         super(EAction.FOOL);

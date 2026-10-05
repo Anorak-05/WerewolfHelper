@@ -4,10 +4,8 @@ import java.util.Iterator;
 
 public class GameStructureIterator implements Iterator<GameEvent> {
 
-    GameStructure structure;
-    GamePhase currentPhase;
-
-
+    private final GameStructure structure;
+    private GamePhase currentPhase;
 
     public GameStructureIterator(GameStructure structure) {
         this.structure = structure;

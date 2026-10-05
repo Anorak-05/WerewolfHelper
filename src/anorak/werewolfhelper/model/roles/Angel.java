@@ -11,8 +11,6 @@ import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class Angel extends Role {
-    boolean firstMorning = true;
-
     public Angel(String name) {
         super(name);
     }

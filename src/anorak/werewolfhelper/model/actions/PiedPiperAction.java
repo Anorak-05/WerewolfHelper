@@ -7,17 +7,12 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.List;
 
 public class PiedPiperAction extends Action {
-    GameStructure structure;
-
-    public PiedPiperAction(GameStructure structure) {
+    public PiedPiperAction() {
         super(EAction.PIED_PIPER);
-
-        this.structure = structure;
     }
 
     @Override

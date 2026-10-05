@@ -9,7 +9,7 @@ import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class VoteCaptainAction extends Action {
-    GameStructure structure;
+    private final GameStructure structure;
 
     public VoteCaptainAction(GameStructure structure) {
         super(EAction.VOTE_CAPTAIN);

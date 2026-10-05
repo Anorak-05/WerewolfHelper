@@ -11,7 +11,7 @@ import anorak.werewolfhelper.model.effects.EEffect;
 import java.util.List;
 
 public class DevotedServantAction extends Action {
-    private Player player;
+    private final Player player;
 
     public DevotedServantAction(Player player) {
         super(EAction.DEVOTED_SERVANT);

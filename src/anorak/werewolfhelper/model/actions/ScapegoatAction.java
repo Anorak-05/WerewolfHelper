@@ -6,6 +6,7 @@ import anorak.werewolfhelper.controller.base.requests.UIMultiplePlayersRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
+import anorak.werewolfhelper.model.actions.base.OneTimeAction;
 import anorak.werewolfhelper.model.roles.Scapegoat;
 import anorak.werewolfhelper.model.structure.GameStructure;
 import anorak.werewolfhelper.model.util.VoteResult;
@@ -13,8 +14,8 @@ import anorak.werewolfhelper.model.util.VoteResult;
 import java.util.List;
 
 public class ScapegoatAction extends Action {
-    Player player;
-    GameStructure structure;
+    private final Player player;
+    private final GameStructure structure;
 
     public ScapegoatAction(Player player, GameStructure structure) {
         super(EAction.SCAPEGOAT);
@@ -38,7 +39,7 @@ public class ScapegoatAction extends Action {
                     )
                     .request();
 
-            structure.addAction(new ScapeGoatVotingAction(allowedToVote, structure));
+            OneTimeAction.createAndAdd(structure, new ScapeGoatVotingAction(allowedToVote));
 
             player.die();
 

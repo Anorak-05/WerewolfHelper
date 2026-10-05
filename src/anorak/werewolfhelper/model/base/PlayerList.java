@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class PlayerList {
-    private Stream<Player> players;
+    private final Stream<Player> players;
 
     public PlayerList(List<Player> players) {
         this.players = players.stream();

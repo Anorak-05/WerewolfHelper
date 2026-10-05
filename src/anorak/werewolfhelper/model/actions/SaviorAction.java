@@ -6,18 +6,14 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.structure.GameStructure;
 
 import java.util.List;
 
 public class SaviorAction extends Action {
-    GameStructure structure;
-    Player lastHealed;
+    private Player lastHealed;
 
-    public SaviorAction(GameStructure structure) {
+    public SaviorAction() {
         super(EAction.SAVIOR);
-
-        this.structure = structure;
     }
 
     @Override
@@ -32,5 +28,6 @@ public class SaviorAction extends Action {
                 .fromPlayers(availableToHeal)
                 .request();
         toHeal.addEffect(EEffect.SAVED);
+        lastHealed = toHeal;
     }
 }

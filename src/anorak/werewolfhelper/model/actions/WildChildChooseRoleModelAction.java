@@ -7,15 +7,11 @@ import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.roles.WildChild;
-import anorak.werewolfhelper.model.structure.GameStructure;
 
 public class WildChildChooseRoleModelAction extends Action {
-    GameStructure structure;
-
-    public WildChildChooseRoleModelAction(GameStructure structure) {
+    public WildChildChooseRoleModelAction() {
         super(EAction.WILD_CHILD_CHOOSE_ROLE_MODEL);
 
-        this.structure = structure;
     }
 
     @Override

@@ -42,11 +42,7 @@ public class UIMultiplePlayersRequest extends UIAction implements IUIRequest<Lis
         while (result.size() < max && (result.size() < min || new UIBooleanRequest(styling, "Add another?").request())) {
             result.add(new UIPlayerRequest(styling, "Choose Player").fromPlayers(fromPlayers).request());
         }
-//        while (result.size() < max && (result.size() < min || GlobalState.getInstance().getUiController().requestBoolean(styling, "Add another?"))) {
-//            result.add(GlobalState.getInstance().getUiController().requestPlayer(styling, "Choose Player", fromPlayers));
-//        }
 
-        //GlobalState.getInstance().getLogger().addLog(message, Loggables.fromList(result, Loggables::fromPlayer));
         return result;
     }
 }
