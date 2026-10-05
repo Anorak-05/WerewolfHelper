@@ -6,10 +6,6 @@ import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
 import anorak.werewolfhelper.model.effects.EEffect;
-import anorak.werewolfhelper.model.base.IGameEventAction;
-import anorak.werewolfhelper.model.structure.GamePhase;
-
-import java.util.List;
 
 public class BigBadWolfAction extends Action {
 

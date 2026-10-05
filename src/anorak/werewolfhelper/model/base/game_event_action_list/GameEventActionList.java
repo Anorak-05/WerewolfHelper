@@ -1,6 +1,6 @@
 package anorak.werewolfhelper.model.base.game_event_action_list;
 
-import anorak.werewolfhelper.model.base.IGameEventAction;
+import anorak.werewolfhelper.model.actions.base.IGameEventAction;
 
 import java.util.*;
 

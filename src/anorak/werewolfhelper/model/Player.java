@@ -1,10 +1,10 @@
 package anorak.werewolfhelper.model;
 
 import anorak.werewolfhelper.controller.base.requests.UIDisplayRequest;
+import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.effects.EEffect;
 import anorak.werewolfhelper.model.effects.Effect;
 import anorak.werewolfhelper.model.effects.IEffect;
-import anorak.werewolfhelper.model.base.Role;
 import anorak.werewolfhelper.model.structure.GamePhase;
 import anorak.werewolfhelper.model.structure.GameStructure;
 

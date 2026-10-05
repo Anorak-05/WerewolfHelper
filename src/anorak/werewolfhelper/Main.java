@@ -3,13 +3,7 @@ package anorak.werewolfhelper;
 import anorak.werewolfhelper.controller.base.IUIController;
 import anorak.werewolfhelper.logging.ILogger;
 import anorak.werewolfhelper.logging.Logger;
-import anorak.werewolfhelper.model.Game;
-import anorak.werewolfhelper.model.Player;
-import anorak.werewolfhelper.model.actions.base.EAction;
-import anorak.werewolfhelper.test.TestController;
 import anorak.werewolfhelper.view.console.ConsoleController;
-
-import static anorak.werewolfhelper.model.base.ERole.*;
 
 public class Main {
 

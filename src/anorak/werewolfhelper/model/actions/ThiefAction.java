@@ -4,11 +4,7 @@ import anorak.werewolfhelper.controller.base.requests.UIRoleRequest;
 import anorak.werewolfhelper.model.Player;
 import anorak.werewolfhelper.model.actions.base.Action;
 import anorak.werewolfhelper.model.actions.base.EAction;
-import anorak.werewolfhelper.model.base.IGameEventAction;
 import anorak.werewolfhelper.model.base.Role;
-import anorak.werewolfhelper.model.structure.GamePhase;
-
-import java.util.List;
 
 public class ThiefAction extends Action {
     Player player;

@@ -1,9 +1,7 @@
 package anorak.werewolfhelper.controller.base.requests;
 
-import anorak.werewolfhelper.GlobalState;
 import anorak.werewolfhelper.controller.base.IUIRequest;
 import anorak.werewolfhelper.controller.base.UIAction;
-import anorak.werewolfhelper.logging.Loggables;
 import anorak.werewolfhelper.model.Player;
 
 import java.util.ArrayList;

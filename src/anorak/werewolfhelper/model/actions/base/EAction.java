@@ -2,9 +2,9 @@ package anorak.werewolfhelper.model.actions.base;
 
 import anorak.werewolfhelper.model.structure.GamePhase;
 
-import static anorak.werewolfhelper.model.structure.GamePhase.*;
-
 import java.util.List;
+
+import static anorak.werewolfhelper.model.structure.GamePhase.*;
 
 public enum EAction {
     // PRE NIGHT
