@@ -52,18 +52,15 @@ public class ConsoleController implements IUIController {
             input = scanner.nextLine();
             try {
                 return Integer.parseInt(input);
-            } catch (NumberFormatException _) {}
+            } catch (NumberFormatException _) {
+            }
         }
     }
 
     @Override
     public void display(String styling, String message) {
         write(styling, message);
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        scanner.nextLine();
     }
 
     private Player requestPlayer(String styling, String message) {
@@ -77,24 +74,36 @@ public class ConsoleController implements IUIController {
         return player;
     }
 
+//    @Override
+//    public Player requestPlayer(String styling, String message, List<Player> fromPlayers) {
+//        if (fromPlayers == null || fromPlayers.isEmpty())
+//            return requestPlayer(styling, message);
+//
+//        Player player;
+//
+//        write(styling, "Choose a Player: " + fromPlayers);
+//
+//        do {
+//            player = requestPlayer(styling, message);
+//
+//            if (!fromPlayers.contains(player)) {
+//                player = null;
+//            }
+//        } while (player == null);
+//
+//        return player;
+//    }
+
+
     @Override
     public Player requestPlayer(String styling, String message, List<Player> fromPlayers) {
-        if (fromPlayers == null || fromPlayers.isEmpty())
-            return requestPlayer(styling, message);
-
-        Player player;
-
-        write(styling, "Choose a Player: " + fromPlayers);
-
-        do {
-            player = requestPlayer(styling, message);
-
-            if (!fromPlayers.contains(player)) {
-                player = null;
-            }
-        } while (player == null);
-
-        return player;
+        write(styling, message);
+        String playerName = JLineConsole.fromOptions(
+                        fromPlayers.stream()
+                                .map(Player::getName)
+                                .toArray(String[]::new))
+                .readLine();
+        return GlobalState.getInstance().getGame().getPlayerByName(playerName);
     }
 
     @Override

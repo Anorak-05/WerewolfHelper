@@ -10,11 +10,11 @@
             <artifactId>jline</artifactId>
             <version>4.4.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.jline</groupId>
-            <artifactId>jline-terminal-ffm</artifactId>
-            <version>4.4.7</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.jline</groupId>-->
+<!--            <artifactId>jline-terminal-ffm</artifactId>-->
+<!--            <version>4.4.7</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

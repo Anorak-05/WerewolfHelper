@@ -16,9 +16,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        JLineConsole.fromOptions(List.of("Nils, Justus, Jenny, Nick")).readLine();
-        System.exit(42);
-
         IUIController controller;
         ILogger logger = new Logger();
 
@@ -29,12 +26,12 @@ public class Main {
 
         Game game = GlobalState.getInstance().getGame();
 
-        game.addPlayer(new Player(ERole.MISTRESS.create(), "M"));
-        game.addPlayer(new Player(ERole.WITCH.create(), "W"));
-        game.addPlayer(new Player(ERole.WEREWOLF.create(), "WW"));
+        game.addPlayer(new Player(ERole.MISTRESS.create(), "Mistress"));
+        game.addPlayer(new Player(ERole.WITCH.create(), "Witch"));
+        game.addPlayer(new Player(ERole.WEREWOLF.create(), "Werewolf"));
 
         for (int i = 0; i < 10; i++) {
-            game.addPlayer(new Player(ERole.VILLAGER.create(), "V" + i));
+            game.addPlayer(new Player(ERole.VILLAGER.create(), "Villager" + i));
         }
 
         game.start();

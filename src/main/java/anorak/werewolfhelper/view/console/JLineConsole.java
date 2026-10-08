@@ -7,6 +7,8 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class JLineConsole {
@@ -31,19 +33,21 @@ public class JLineConsole {
         this.reader = reader;
     }
 
-    public static JLineConsole fromOptions(List<String> options) {
+    public static JLineConsole fromOptions(String[] options) {
 
         try {
             Terminal terminal = TerminalBuilder.builder()
                     .system(true)
+                    .provider("ffm")
                     .build();
+
             LineReader reader = LineReaderBuilder.builder()
                     .terminal(terminal)
                     .completer(new StringsCompleter(options))
-                    .option(LineReader.Option.AUTO_LIST, true) // Automatically list options
-                    .option(LineReader.Option.LIST_PACKED, true) // Display completions in a compact form
-                    .option(LineReader.Option.AUTO_MENU, true) // Show menu automatically
-                    .option(LineReader.Option.MENU_COMPLETE, true) // Cycle through completions
+//                    .option(LineReader.Option.AUTO_LIST, true) // Automatically list options
+//                    .option(LineReader.Option.LIST_PACKED, true) // Display completions in a compact form
+//                    .option(LineReader.Option.AUTO_MENU, true) // Show menu automatically
+//                    .option(LineReader.Option.MENU_COMPLETE, true) // Cycle through completions
                     .build();
 
             return new JLineConsole(terminal, reader);
@@ -53,6 +57,13 @@ public class JLineConsole {
     }
 
     public String readLine() {
-        return reader.readLine("> ");
+        String input = reader.readLine("> ");
+
+        try {
+            terminal.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return input;
     }
 }

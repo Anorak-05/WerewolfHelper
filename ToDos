@@ -1,12 +1,7 @@
-Characters:
-
 Old One: full implementation
 - lots of Edge Cases
 DevotedServant
 - implement some Edge Cases to do with Effects
-
-Mistress
-- continue
 
 Test all roles
 Add List<Player> players for all UIPLayerRequests
@@ -19,6 +14,10 @@ Game:
 - add the other Werwölfe: Der Pakt modules
   - buildings + roles
   - Event cards + roles
+- Kill Players as soon as they should die and track the deaths per night
+  - Morning Action: read out all deaths
+- Make system to generate "Shadow Action" for dead players
+  - In case the dead's roles are not revealed
 
 System:
 - Programm arguments to rerun a game or start a new game from UI
